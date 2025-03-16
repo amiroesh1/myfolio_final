@@ -1,0 +1,87 @@
+[
+  {
+    "source": "talem",
+    "title": "International Science Olympiad",
+    "category": "Science",
+    "type": "Competition",
+    "deadline": "April 30, 2024",
+    "location": "Online",
+    "isOnline": true,
+    "interests": [
+      "Science",
+      "Research",
+      "Competition"
+    ],
+    "period": "School Year",
+    "financialRating": "Free",
+    "isHighlySelective": true
+  },
+  {
+    "source": "talem",
+    "title": "Global Youth Leadership Summit",
+    "category": "Development",
+    "type": "Leadership",
+    "deadline": "May 15, 2024",
+    "location": "New York, NY",
+    "isOnline": false,
+    "interests": [
+      "Leadership",
+      "Public Speaking",
+      "International Relations"
+    ],
+    "period": "Summer",
+    "financialRating": "High Cost",
+    "isHighlySelective": true
+  },
+  {
+    "source": "talem",
+    "title": "Tech Startup Internship Program",
+    "category": "Technology",
+    "type": "Internship",
+    "deadline": "March 31, 2024",
+    "location": "San Francisco, CA",
+    "isOnline": false,
+    "interests": [
+      "Technology",
+      "Entrepreneurship",
+      "Business"
+    ],
+    "period": "Summer",
+    "financialRating": "Paid",
+    "isHighlySelective": false
+  },
+  {
+    "source": "talem",
+    "title": "Local Science Fair",
+    "category": "Science",
+    "type": "Competition",
+    "deadline": "February 28, 2024",
+    "location": "Boston, MA",
+    "isOnline": false,
+    "interests": [
+      "Science",
+      "Research",
+      "Innovation"
+    ],
+    "period": "School Year",
+    "financialRating": "Low Cost",
+    "isHighlySelective": false
+  },
+  {
+    "source": "talem",
+    "title": "AI Research Program",
+    "category": "Technology",
+    "type": "Research",
+    "deadline": "June 1, 2024",
+    "location": "Online",
+    "isOnline": true,
+    "interests": [
+      "Artificial Intelligence",
+      "Computer Science",
+      "Research"
+    ],
+    "period": "Summer",
+    "financialRating": "Free",
+    "isHighlySelective": true
+  }
+]
