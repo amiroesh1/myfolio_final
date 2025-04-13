@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { FaTrophy, FaRobot, FaChartLine, FaSearch, FaClock } from 'react-icons/fa';
 
 export default function About() {
   return (
@@ -39,57 +40,58 @@ export default function About() {
             <div className="grid md:grid-cols-2 gap-8">
               <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
                 <div className="text-[#4F46E5] mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
+                  <FaTrophy className="h-8 w-8" />
                 </div>
                 <h3 className="text-xl font-semibold text-[#4F46E5] mb-3">
-                  AI Application Mentor
-                </h3>
-                <p className="text-[#475569] text-base">
-                  Get instant, personalized feedback on your college applications with our AI technology. Perfect your essays and stand out from the crowd.
-                </p>
-              </div>
-
-              <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-                <div className="text-[#4F46E5] mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-[#4F46E5] mb-3">
-                  Profile Compare
-                </h3>
-                <p className="text-[#475569] text-base">
-                  See how you measure up against successful applicants at your dream schools. Identify and improve key areas of your profile.
-                </p>
-              </div>
-
-              <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-                <div className="text-[#4F46E5] mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-[#4F46E5] mb-3">
-                  Personalized Extracurricular Matching
-                </h3>
-                <p className="text-[#475569] text-base">
-                  Let AI match you with perfect extracurricular activities based on your interests. Find opportunities that truly reflect who you are.
-                </p>
-              </div>
-
-              <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-                <div className="text-[#4F46E5] mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-[#4F46E5] mb-3">
-                  Extracurriculars & Opportunities Database
+                  Extracurricular Database
                 </h3>
                 <p className="text-[#475569] text-base">
                   Browse our curated database of verified extracurriculars and competitions. Discover opportunities that colleges love to see.
+                </p>
+              </div>
+
+              <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow relative">
+                <div className="text-[#4F46E5] mb-4">
+                  <FaRobot className="h-8 w-8" />
+                </div>
+                <div className="absolute top-4 right-4">
+                  <FaClock className="text-blue-500" />
+                </div>
+                <h3 className="text-xl font-semibold text-[#4F46E5] mb-3">
+                  AI Application Mentor (Coming Soon)
+                </h3>
+                <p className="text-[#475569] text-base">
+                  Get real-time feedback and personalized recommendations for your college applications.
+                </p>
+              </div>
+
+              <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow relative">
+                <div className="text-[#4F46E5] mb-4">
+                  <FaChartLine className="h-8 w-8" />
+                </div>
+                <div className="absolute top-4 right-4">
+                  <FaClock className="text-blue-500" />
+                </div>
+                <h3 className="text-xl font-semibold text-[#4F46E5] mb-3">
+                  Compare Profile (Coming Soon)
+                </h3>
+                <p className="text-[#475569] text-base">
+                  See how you measure up against successful applicants at your dream schools.
+                </p>
+              </div>
+
+              <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow relative">
+                <div className="text-[#4F46E5] mb-4">
+                  <FaSearch className="h-8 w-8" />
+                </div>
+                <div className="absolute top-4 right-4">
+                  <FaClock className="text-blue-500" />
+                </div>
+                <h3 className="text-xl font-semibold text-[#4F46E5] mb-3">
+                  AI-Powered Extracurricular Finder (Coming Soon)
+                </h3>
+                <p className="text-[#475569] text-base">
+                  Let AI match you with perfect extracurricular activities based on your interests.
                 </p>
               </div>
             </div>
@@ -118,72 +120,40 @@ export default function About() {
           <section className="mb-16">
             <h2 className="text-2xl font-bold text-[#1E293B] mb-6 text-center">Select Your Goal</h2>
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow cursor-pointer border-2 border-transparent hover:border-[#4F46E5]">
+              <Link href="/features" className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow cursor-pointer border-2 border-transparent hover:border-[#4F46E5]">
                 <h3 className="text-xl font-semibold text-[#4F46E5] mb-3">
                   Find Competitions
                 </h3>
                 <p className="text-[#475569]">
                   Discover verified competitions and extracurricular opportunities to enhance your profile.
                 </p>
-              </div>
-              <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow cursor-pointer border-2 border-transparent hover:border-[#4F46E5]">
+              </Link>
+
+              <Link href="/features" className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow cursor-pointer border-2 border-transparent hover:border-[#4F46E5]">
                 <h3 className="text-xl font-semibold text-[#4F46E5] mb-3">
                   Structure Your Portfolio
                 </h3>
                 <p className="text-[#475569]">
                   Get personalized guidance on organizing and presenting your achievements effectively.
                 </p>
-              </div>
-              <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow cursor-pointer border-2 border-transparent hover:border-[#4F46E5]">
+              </Link>
+
+              <Link href="/features" className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow cursor-pointer border-2 border-transparent hover:border-[#4F46E5]">
                 <h3 className="text-xl font-semibold text-[#4F46E5] mb-3">
                   Get Mentorship
                 </h3>
                 <p className="text-[#475569]">
                   Connect with successful applicants who've made it to top universities.
                 </p>
-              </div>
+              </Link>
             </div>
           </section>
 
           {/* Testimonials Section */}
           <section className="mb-16">
-  <h2 className="text-2xl font-bold text-[#1E293B] mb-6 text-center">Success Stories</h2>
-  <div className="grid md:grid-cols-2 gap-6 mb-8">
-    {/* Sarah Chen */}
-    <div className="bg-white p-6 rounded-xl shadow-sm">
-      <div className="flex items-center mb-4">
-        <img 
-          src="https://media.licdn.com/dms/image/v2/D4E03AQEI2-YzwDRUsg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1728099789795?e=1747267200&v=beta&t=xbbbBSTtDTFeUERXfjiX55hV5ai8V5BzBJp1ekkUFkw" 
-          alt="Sarah Chen" 
-          className="w-12 h-12 rounded-full mr-4"
-        />
-        <div>
-          <h3 className="font-semibold text-[#1E293B]">Sarah Chen</h3>
-          <p className="text-sm text-[#64748B]">Harvard '24</p>
-        </div>
-      </div>
-      <p className="text-[#475569] italic">
-        "MyFolio helped me organize my achievements and present them in a way that truly stood out. The AI feedback was invaluable during my application process."
-      </p>
-    </div>
-    {/* James Rodriguez */}
-    <div className="bg-white p-6 rounded-xl shadow-sm">
-      <div className="flex items-center mb-4">
-        <img 
-          src="https://media.licdn.com/dms/image/v2/D5603AQERrabilmOspQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1705893750193?e=1747267200&v=beta&t=NTN3F4BdJ_ymBgo2cuby60CxQLmV6S2GwyZ5c0zQqnA" 
-          alt="James Rodriguez" 
-          className="w-12 h-12 rounded-full mr-4"
-        />
-        <div>
-          <h3 className="font-semibold text-[#1E293B]">James Rodriguez</h3>
-          <p className="text-sm text-[#64748B]">Stanford '23</p>
-        </div>
-      </div>
-      <p className="text-[#475569] italic">
-        "The competition database and mentorship connections were game-changers. I found opportunities I never knew existed."
-      </p>
-    </div>
-  </div>
+
+    
+   
 
   {/* University Logos */}
   <div className="bg-white rounded-xl shadow-sm p-8">
@@ -281,4 +251,4 @@ export default function About() {
       </div>
     </main>
   );
-} 
+}
