@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { FaSearch } from 'react-icons/fa';
+import { FaSearch, FaFilter } from 'react-icons/fa';
 
 interface Activity {
   title: string;
@@ -30,6 +30,7 @@ export default function ExtracurricularDatabase() {
     majors: [] as string[],
     isHighlySelective: false
   });
+  const [showFilters, setShowFilters] = useState(false);
 
   // Filter options
   const filterOptions = {
@@ -143,13 +144,24 @@ export default function ExtracurricularDatabase() {
   };
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 py-8">
-      <div className="flex flex-col lg:flex-row gap-6">
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
+      {/* Mobile Filter Toggle */}
+      <div className="lg:hidden mb-4">
+        <button
+          onClick={() => setShowFilters(!showFilters)}
+          className="w-full flex items-center justify-center gap-2 bg-white p-3 rounded-lg border border-gray-200 shadow-sm text-gray-700"
+        >
+          <FaFilter className="h-4 w-4" />
+          <span>{showFilters ? 'Hide Filters' : 'Show Filters'}</span>
+        </button>
+      </div>
+
+      <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8">
         {/* Filters Sidebar */}
-        <div className="w-full lg:w-64 flex-shrink-0">
-          <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-lg font-semibold text-gray-900">Filters</h2>
+        <div className={`${showFilters ? 'block' : 'hidden'} lg:block w-full lg:w-64 flex-shrink-0`}>
+          <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm sticky top-4">
+            <div className="flex items-center justify-between mb-4 sm:mb-6">
+              <h2 className="text-base sm:text-lg font-semibold text-gray-900">Filters</h2>
               <button
                 onClick={() => setFilters({
                   type: [],
@@ -159,13 +171,13 @@ export default function ExtracurricularDatabase() {
                   majors: [],
                   isHighlySelective: false
                 })}
-                className="text-sm text-blue-600 hover:text-blue-700"
+                className="text-sm hover:text-blue-700 transition-colors"
               >
-                Reset Filters
+                Reset
               </button>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               {/* Majors */}
               <div>
                 <h3 className="font-medium text-gray-900 mb-3">Majors</h3>
@@ -274,40 +286,38 @@ export default function ExtracurricularDatabase() {
         </div>
 
         {/* Main Content */}
-        <div className="flex-1">
+        <div className="flex-1 min-w-0">
           {/* Search Bar */}
           <div className="mb-4 sm:mb-6">
             <div className="relative">
               <input
                 type="text"
-                placeholder="Search opportunities..."
-                className="w-full p-3 pl-10 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                placeholder="   Search opportunities..."
+                className="w-full p-3 sm:p-4 pl-10 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-base"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
-              <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+              <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
             </div>
           </div>
 
           {/* Activities Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
             {filteredActivities.map((activity, index) => (
               <div key={index} className="bg-white rounded-lg shadow-sm p-4 sm:p-6 hover:shadow-md transition-shadow">
-                <div className="flex justify-between items-start mb-4">
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-1">{activity.title}</h3>
-                    <p className="text-sm text-gray-500">{activity.description}</p>
+                <div className="flex flex-col sm:flex-row justify-between items-start gap-2 sm:gap-4 mb-4">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-1 line-clamp-2">{activity.title}</h3>
+                    <p className="text-sm text-gray-500 line-clamp-3">{activity.description}</p>
                   </div>
-                  <div className="flex flex-col items-end gap-2">
-                    {activity.isHighlySelective && (
-                      <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">
-                        Highly Selective
-                      </span>
-                    )}
-                  </div>
+                  {activity.isHighlySelective && (
+                    <span className="inline-flex items-center bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded whitespace-nowrap">
+                      Highly Selective
+                    </span>
+                  )}
                 </div>
                 
-                <div className="grid grid-cols-2 gap-4 text-sm mb-4">
+                <div className="grid grid-cols-2 gap-3 text-sm mb-4">
                   <div>
                     <span className="text-gray-600">Type:</span>
                     <span className="ml-2 text-gray-900">{activity.type}</span>
@@ -332,7 +342,7 @@ export default function ExtracurricularDatabase() {
                   {activity.interests.map((interest, i) => (
                     <span
                       key={i}
-                      className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded"
+                      className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded whitespace-nowrap"
                     >
                       {interest}
                     </span>
@@ -340,15 +350,15 @@ export default function ExtracurricularDatabase() {
                 </div>
 
                 <div className="mt-4 pt-4 border-t border-gray-100">
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-600">
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                    <span className="text-sm text-gray-600 whitespace-nowrap">
                       Deadline: {activity.deadline}
                     </span>
                     <a
                       href={activity.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors text-sm"
+                      className="w-full sm:w-auto text-center bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors text-sm"
                     >
                       Learn More
                     </a>
@@ -358,7 +368,7 @@ export default function ExtracurricularDatabase() {
             ))}
 
             {filteredActivities.length === 0 && (
-              <div className="text-center py-8 sm:py-12">
+              <div className="col-span-full text-center py-8 sm:py-12">
                 <p className="text-gray-500 text-base sm:text-lg">No opportunities found matching your criteria.</p>
               </div>
             )}
