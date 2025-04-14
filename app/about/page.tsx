@@ -217,7 +217,7 @@ export default function About() {
                 <h3 className="font-semibold text-[#1E293B] mb-4">Contact</h3>
                 <ul className="space-y-2">
                   <li className="text-[#475569]">sunkarulyansar@gmail.com</li>
-                  <li className="text-[#475569]"+7 707 988 5040</li>
+                  <li className="text-[#475569]">+7 707 988 5040</li>
                   <li className="text-[#475569]">Turar Ryskylov 14</li>
                   <li className="text-[#475569]">Astana, KZ 94105</li>
                 </ul>
