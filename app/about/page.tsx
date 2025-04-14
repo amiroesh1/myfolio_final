@@ -12,9 +12,9 @@ export default function About() {
           {/* Header Section */}
           <div className="flex flex-col items-center justify-center min-h-[90vh] text-center">
             <div className="max-w-3xl mt-20">
-              <h1 className="text-[80px] leading-[1.2] font-black mb-8">
-                <div className="text-[#1E293B]">Craft Your Perfect</div>
-                <div className="text-[#4F46E5]">College Portfolio</div>
+              <h1 className="text-2xl md:text-5xl lg:text-6xl font-bold max-w-6xl mx-auto text-center mt-6 relative z-10 mb-3">
+                Craft Your Perfect<br /> 
+                <span className="text-[#4F46E5]">College Portfolio</span>
               </h1>
               <p className="text-xl text-[#475569] max-w-2xl mx-auto mb-12">
                 AI-powered guidance to help students showcase their achievements, explore 
