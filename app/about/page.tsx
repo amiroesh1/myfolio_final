@@ -98,19 +98,20 @@ export default function About() {
           </section>
 
           {/* Community Stats Section */}
-          <section className="text-center bg-white p-8 rounded-xl shadow-sm mb-16">
-            <h2 className="text-2xl font-bold text-[#1E293B] mb-6">Our Growing Community</h2>
-            <div className="grid md:grid-cols-3 gap-6">
-              <div>
-                <div className="text-3xl font-bold text-[#4F46E5] mb-2">1,000+</div>
-                <div className="text-[#475569]">Active Students</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-[#4F46E5] mb-2">24/7</div>
-                <div className="text-[#475569]">AI-Powered Support</div>
-              </div>
-            </div>
-          </section>
+<section className="text-center bg-white p-8 rounded-xl shadow-sm mb-16">
+  <h2 className="text-2xl font-bold text-[#1E293B] mb-6">Our Growing Community</h2>
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 justify-center">
+    <div>
+      <div className="text-3xl font-bold text-[#4F46E5] mb-2">1,000+</div>
+      <div className="text-[#475569]">Active Students</div>
+    </div>
+    <div>
+      <div className="text-3xl font-bold text-[#4F46E5] mb-2">24/7</div>
+      <div className="text-[#475569]">AI-Powered Support</div>
+    </div>
+  </div>
+</section>
+
 
           {/* Interactive Goals Section */}
           <section className="mb-16">
