@@ -2,6 +2,7 @@ import { ClerkProvider } from '@clerk/nextjs';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import Navigation from './components/Navigation';
+import { Analytics } from '@vercel/analytics/react'; // ✅ Import Analytics
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -17,6 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <body className={inter.className}>
           <Navigation />
           {children}
+          <Analytics /> {/* ✅ Add Analytics here */}
         </body>
       </html>
     </ClerkProvider>
