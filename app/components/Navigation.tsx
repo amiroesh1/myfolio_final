@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaBars, FaTimes, FaGraduationCap } from 'react-icons/fa';
 import Link from 'next/link';
+import { UserButton, SignedIn, SignedOut } from '@clerk/nextjs';
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -44,12 +45,32 @@ export default function Navigation() {
             <Link href="/contact" className="text-[#475569] hover:text-[#1E293B] text-[15px]">
               Contact
             </Link>
-            <Link 
-              href="/signup" 
-              className="bg-[#4F46E5] text-white px-5 py-2 rounded-lg hover:bg-[#4338CA] transition-colors duration-300 text-[15px]"
+            {/* <Link 
+              href="/sign-in"
+              className="text-[#1E293B] hover:text-[#4F46E5] text-[15px]"
             >
-              Sign Up – It's Free
+                Login
+            </Link> */}
+            {/* <Link 
+              href="/sign-up" 
+              className="bg-[#4F46E5] text-white px-5 py-2 rounded-full hover:bg-[#4338CA] transition-colors duration-300 text-[15px]"
+            >
+              Sign Up
+            </Link> */}
+          <SignedIn>
+            <div className="ml-4">
+              <UserButton afterSignOutUrl="/" />
+            </div>
+          </SignedIn>
+
+          <SignedOut>
+            <Link 
+              href="/sign-in"
+              className="bg-[#4F46E5] text-white px-5 py-2 rounded-full hover:bg-[#4338CA] transition-colors duration-300 text-[15px]"
+            >
+              Login
             </Link>
+          </SignedOut>
           </div>
 
           {/* Mobile menu button */}
@@ -98,20 +119,34 @@ export default function Navigation() {
             >
               Pricing
             </Link>
-            <Link 
-              href="/contact" 
-              className="block text-[#475569] hover:text-[#1E293B] py-2 text-[15px]"
+            {/* <Link 
+              href="/sign-in" 
+              className="block text-[#1E293B] hover:text-[#4F46E5] py-2 text-[15px]"
               onClick={() => setIsMenuOpen(false)}
             >
-              Contact
+              Login
             </Link>
             <Link 
-              href="/signup" 
-              className="block w-full text-center bg-[#4F46E5] text-white px-4 py-2 rounded-lg hover:bg-[#4338CA] transition-colors duration-300 text-[15px]"
+              href="/sign-up" 
+              className="block w-full text-center bg-[#4F46E5] text-white px-4 py-2 rounded-full hover:bg-[#4338CA] transition-colors duration-300 text-[15px]"
               onClick={() => setIsMenuOpen(false)}
             >
-              Sign Up – It's Free
+              Sign Up
+            </Link> */}
+            <SignedIn>
+            <div className="ml-4">
+              <UserButton afterSignOutUrl="/" />
+            </div>
+          </SignedIn>
+
+          <SignedOut>
+            <Link 
+              href="/sign-in"
+              className="bg-[#4F46E5] text-white px-5 py-2 rounded-full hover:bg-[#4338CA] transition-colors duration-300 text-[15px]"
+            >
+              Login
             </Link>
+          </SignedOut>
           </div>
         </div>
       )}
