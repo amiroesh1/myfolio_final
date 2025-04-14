@@ -1,18 +1,9 @@
 'use client';
 
 import React from 'react';
-import { 
-  FaRobot, 
-  FaChartLine, 
-  FaSearch, 
-  FaTrophy, 
-  FaClock 
-} from 'react-icons/fa';
 import ExtracurricularDatabase from '../components/ExtracurricularDatabase';
 
-
-
-export default function FeaturesPage() {
+export default function Features() {
   return (
     <main className="min-h-screen" style={{ background: 'linear-gradient(to right, rgb(243, 238, 255), rgb(236, 242, 255), rgb(230, 247, 255))' }}>
       <div className="container mx-auto px-4 py-16">
@@ -23,9 +14,6 @@ export default function FeaturesPage() {
           <p className="text-xl text-[#475569] text-center mb-16">
             Discover opportunities to enhance your college application
           </p>
-
-          
-                
 
           {/* Extracurricular Database Section */}
           <section className="mt-16">
