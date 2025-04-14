@@ -12,7 +12,7 @@ export default function Features() {
             MyFolio Features
           </h1>
           <p className="text-xl text-[#475569] text-center mb-16">
-            Discover opportunities to enhance your college application
+            Discover opportunities to enhance your college application — explore curated programs, competitions, internships, and more designed to boost your profile.
           </p>
 
           {/* Extracurricular Database Section */}
