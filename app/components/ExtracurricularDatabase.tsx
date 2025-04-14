@@ -144,10 +144,10 @@ export default function ExtracurricularDatabase() {
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 py-8">
-      <div className="flex gap-8">
+      <div className="flex flex-col lg:flex-row gap-6">
         {/* Filters Sidebar */}
-        <div className="w-64 flex-shrink-0">
-          <div className="bg-white rounded-xl p-6 shadow-sm">
+        <div className="w-full lg:w-64 flex-shrink-0">
+          <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-lg font-semibold text-gray-900">Filters</h2>
               <button
@@ -276,7 +276,7 @@ export default function ExtracurricularDatabase() {
         {/* Main Content */}
         <div className="flex-1">
           {/* Search Bar */}
-          <div className="mb-6">
+          <div className="mb-4 sm:mb-6">
             <div className="relative">
               <input
                 type="text"
@@ -290,9 +290,9 @@ export default function ExtracurricularDatabase() {
           </div>
 
           {/* Activities Grid */}
-          <div className="grid grid-cols-1 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {filteredActivities.map((activity, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
+              <div key={index} className="bg-white rounded-lg shadow-sm p-4 sm:p-6 hover:shadow-md transition-shadow">
                 <div className="flex justify-between items-start mb-4">
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-1">{activity.title}</h3>
@@ -358,8 +358,8 @@ export default function ExtracurricularDatabase() {
             ))}
 
             {filteredActivities.length === 0 && (
-              <div className="text-center py-12">
-                <p className="text-gray-500 text-lg">No opportunities found matching your criteria.</p>
+              <div className="text-center py-8 sm:py-12">
+                <p className="text-gray-500 text-base sm:text-lg">No opportunities found matching your criteria.</p>
               </div>
             )}
           </div>
