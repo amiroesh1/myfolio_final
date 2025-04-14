@@ -102,12 +102,8 @@ export default function About() {
             <h2 className="text-2xl font-bold text-[#1E293B] mb-6">Our Growing Community</h2>
             <div className="grid md:grid-cols-3 gap-6">
               <div>
-                <div className="text-3xl font-bold text-[#4F46E5] mb-2">10,000+</div>
+                <div className="text-3xl font-bold text-[#4F46E5] mb-2">1,000+</div>
                 <div className="text-[#475569]">Active Students</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-[#4F46E5] mb-2">500+</div>
-                <div className="text-[#475569]">University Acceptances</div>
               </div>
               <div>
                 <div className="text-3xl font-bold text-[#4F46E5] mb-2">24/7</div>
