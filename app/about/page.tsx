@@ -216,19 +216,17 @@ export default function About() {
               <div>
                 <h3 className="font-semibold text-[#1E293B] mb-4">Contact</h3>
                 <ul className="space-y-2">
-                  <li className="text-[#475569]">support@myfolio.com</li>
-                  <li className="text-[#475569]">1-800-MYFOLIO</li>
-                  <li className="text-[#475569]">123 College Ave</li>
-                  <li className="text-[#475569]">San Francisco, CA 94105</li>
+                  <li className="text-[#475569]">sunkarulyansar@gmail.com</li>
+                  <li className="text-[#475569]"+7 707 988 5040</li>
+                  <li className="text-[#475569]">Turar Ryskylov 14</li>
+                  <li className="text-[#475569]">Astana, KZ 94105</li>
                 </ul>
               </div>
               <div>
                 <h3 className="font-semibold text-[#1E293B] mb-4">Social Media</h3>
                 <ul className="space-y-2">
-                  <li><a href="#" className="text-[#475569] hover:text-[#4F46E5]">Twitter</a></li>
-                  <li><a href="#" className="text-[#475569] hover:text-[#4F46E5]">LinkedIn</a></li>
-                  <li><a href="#" className="text-[#475569] hover:text-[#4F46E5]">Instagram</a></li>
-                  <li><a href="#" className="text-[#475569] hover:text-[#4F46E5]">Facebook</a></li>
+                  <li><a href="https://www.linkedin.com/company/myfoliokz/" className="text-[#475569] hover:text-[#4F46E5]">LinkedIn</a></li>
+                  <li><a href="https://www.instagram.com/myfolio.kz/" className="text-[#475569] hover:text-[#4F46E5]">Instagram</a></li>
                 </ul>
               </div>
               <div>
@@ -247,7 +245,7 @@ export default function About() {
               </div>
             </div>
             <div className="text-center text-[#64748B] text-sm py-8 border-t border-gray-200">
-              © 2024 MyFolio. All rights reserved.
+              © 2025 MyFolio. All rights reserved.
             </div>
           </footer>
         </div>
