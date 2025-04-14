@@ -193,9 +193,12 @@ export default function About() {
             <p className="text-lg text-[#475569] mb-6">
               Join thousands of students who are crafting their perfect college portfolios with MyFolio.
             </p>
-            <button className="bg-[#4F46E5] text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-[#4338CA] transition-colors duration-300">
-              Start Now – It's Free
-            </button>
+            <Link 
+                  href="/features" 
+                  className="bg-[#4F46E5] text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-[#4338CA] transition-colors duration-300"
+                >
+                  Start Now – It's Free
+                </Link>
           </section>
 
           {/* Footer Section */}
