@@ -119,6 +119,11 @@ export default function Navigation() {
             >
               Pricing
             </Link>
+            <Link href="/contact" className="block text-[#475569] hover:text-[#1E293B] py-2 text-[15px]"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Contact
+            </Link>
             {/* <Link 
               href="/sign-in" 
               className="block text-[#1E293B] hover:text-[#4F46E5] py-2 text-[15px]"
