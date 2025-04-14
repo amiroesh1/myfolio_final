@@ -6,13 +6,13 @@ import { FaTrophy, FaRobot, FaChartLine, FaSearch, FaClock } from 'react-icons/f
 
 export default function About() {
   return (
-    <main className="min-h-screen" style={{ background: 'linear-gradient(to right, rgb(243, 238, 255), rgb(236, 242, 255), rgb(230, 247, 255))' }}>
+   <main className="min-h-screen" style={{ background: 'linear-gradient(to right, rgb(243, 238, 255), rgb(236, 242, 255), rgb(230, 247, 255))' }}>
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto">
           {/* Header Section */}
           <div className="flex flex-col items-center justify-center min-h-[90vh] text-center">
             <div className="max-w-3xl mt-20">
-              <h1 className="text-2xl md:text-5xl lg:text-6xl font-bold max-w-6xl mx-auto text-center mt-6 relative z-10 mb-3">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold max-w-6xl mx-auto text-center mt-6 relative z-10 mb-3">
                 Craft Your Perfect<br /> 
                 <span className="text-[#4F46E5]">College Portfolio</span>
               </h1>
