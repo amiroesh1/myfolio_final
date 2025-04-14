@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import activities from '../../data/activities.json';
 
-// Add static configuration
+// Add static configuration for Next.js export
 export const dynamic = 'force-static';
 export const revalidate = false;
 
