@@ -1,65 +1,145 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaSearch } from 'react-icons/fa';
 
-const sampleActivities = [
-  {
-    title: 'International Science Olympiad',
-    category: 'Science',
-    type: 'Competition',
-    deadline: 'April 30, 2024',
-    location: 'Online',
-    isOnline: true,
-    interests: ['Science', 'Research', 'Competition'],
-    period: 'School Year',
-    financialRating: 'Free',
-    isHighlySelective: true,
-    description: 'Global science competition for high school students'
-  },
-  {
-    title: 'Tech Startup Internship',
-    category: 'Technology',
-    type: 'Internship',
-    deadline: 'March 31, 2024',
-    location: 'San Francisco, CA',
-    isOnline: false,
-    interests: ['Technology', 'Entrepreneurship'],
-    period: 'Summer',
-    financialRating: 'Paid',
-    isHighlySelective: false,
-    description: 'Work with innovative startups in Silicon Valley'
-  },
-  {
-    title: 'Global Youth Leadership Summit',
-    category: 'Development',
-    type: 'Leadership',
-    deadline: 'May 15, 2024',
-    location: 'New York, NY',
-    isOnline: false,
-    interests: ['Leadership', 'Public Speaking'],
-    period: 'Summer',
-    financialRating: 'High Cost',
-    isHighlySelective: true,
-    description: 'Intensive leadership training program'
-  },
-];
+interface Activity {
+  title: string;
+  category: string;
+  type: string;
+  deadline: string;
+  location: string;
+  isOnline: boolean;
+  interests: string[];
+  period: string;
+  financialRating: string;
+  isHighlySelective: boolean;
+  description: string;
+  url: string;
+}
 
 export default function ExtracurricularDatabase() {
+  const [activities, setActivities] = useState<Activity[]>([]);
+  const [filteredActivities, setFilteredActivities] = useState<Activity[]>([]);
+  const [searchQuery, setSearchQuery] = useState('');
   const [filters, setFilters] = useState({
     type: [] as string[],
     period: [] as string[],
+    format: [] as string[],
     financialRating: [] as string[],
+    majors: [] as string[],
     isHighlySelective: false
   });
 
-  const toggleFilter = (type: 'type' | 'period' | 'financialRating', value: string) => {
-    setFilters(prev => ({
-      ...prev,
-      [type]: prev[type].includes(value) 
-        ? prev[type].filter(t => t !== value)
-        : [...prev[type], value]
-    }));
+  // Filter options
+  const filterOptions = {
+    type: ['Competition', 'Program', 'Internship'],
+    period: ['Summer', 'School Year'],
+    format: ['Online', 'In-Person', 'Hybrid'],
+    financialRating: ['Free', 'Paid', 'Financial Aid Available'],
+    majors: ['Business', 'Engineering', 'Computer Science', 'Economics', 'Political Science']
+  };
+
+  // Fetch activities from the API
+  useEffect(() => {
+    const fetchActivities = async () => {
+      try {
+        const response = await fetch('/api/activities');
+        if (!response.ok) throw new Error('Failed to fetch activities');
+        const data = await response.json();
+        setActivities(data);
+        setFilteredActivities(data);
+      } catch (error) {
+        console.error('Error fetching activities:', error);
+      }
+    };
+
+    fetchActivities();
+  }, []);
+
+  // Filter activities when search query or filters change
+  useEffect(() => {
+    let result = activities;
+
+    // Apply search filter across all fields
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase();
+      result = result.filter(activity => 
+        activity.title.toLowerCase().includes(query) ||
+        activity.description.toLowerCase().includes(query) ||
+        activity.category.toLowerCase().includes(query) ||
+        activity.type.toLowerCase().includes(query) ||
+        activity.interests.some(interest => interest.toLowerCase().includes(query)) ||
+        activity.location.toLowerCase().includes(query) ||
+        activity.financialRating.toLowerCase().includes(query)
+      );
+    }
+
+    // Apply type filter
+    if (filters.type.length > 0) {
+      result = result.filter(activity => filters.type.includes(activity.type));
+    }
+
+    // Apply period filter
+    if (filters.period.length > 0) {
+      result = result.filter(activity => filters.period.includes(activity.period));
+    }
+
+    // Apply format filter
+    if (filters.format.length > 0) {
+      result = result.filter(activity => {
+        const format = activity.location === 'Hybrid' ? 'Hybrid' : 
+                      activity.isOnline ? 'Online' : 'In-Person';
+        return filters.format.includes(format);
+      });
+    }
+
+    // Apply cost filter
+    if (filters.financialRating.length > 0) {
+      result = result.filter(activity => {
+        return filters.financialRating.some(rating => {
+          if (rating === 'Financial Aid Available') {
+            return activity.financialRating.toLowerCase().includes('financial aid') ||
+                   activity.financialRating.toLowerCase().includes('scholarship');
+          }
+          if (rating === 'Free') {
+            return activity.financialRating.toLowerCase().startsWith('free');
+          }
+          if (rating === 'Paid') {
+            return activity.financialRating.toLowerCase().startsWith('paid');
+          }
+          return activity.financialRating.toLowerCase().includes(rating.toLowerCase());
+        });
+      });
+    }
+
+    // Apply majors filter
+    if (filters.majors.length > 0) {
+      result = result.filter(activity => filters.majors.some(major => activity.interests.includes(major)));
+    }
+
+    // Apply selectivity filter
+    if (filters.isHighlySelective) {
+      result = result.filter(activity => activity.isHighlySelective);
+    }
+
+    setFilteredActivities(result);
+  }, [searchQuery, filters, activities]);
+
+  const toggleFilter = (type: keyof typeof filters, value: string) => {
+    if (type === 'isHighlySelective') {
+      setFilters(prev => ({
+        ...prev,
+        isHighlySelective: !prev.isHighlySelective
+      }));
+    } else {
+      setFilters(prev => ({
+        ...prev,
+        [type]: prev[type].includes(value)
+          ? prev[type].filter(t => t !== value)
+          : [...prev[type], value]
+      }));
+    }
   };
 
   return (
@@ -74,7 +154,9 @@ export default function ExtracurricularDatabase() {
                 onClick={() => setFilters({
                   type: [],
                   period: [],
+                  format: [],
                   financialRating: [],
+                  majors: [],
                   isHighlySelective: false
                 })}
                 className="text-sm text-blue-600 hover:text-blue-700"
@@ -83,13 +165,30 @@ export default function ExtracurricularDatabase() {
               </button>
             </div>
 
-            {/* Quick Filters Section */}
             <div className="space-y-6">
+              {/* Majors */}
+              <div>
+                <h3 className="font-medium text-gray-900 mb-3">Majors</h3>
+                <div className="space-y-2">
+                  {filterOptions.majors.map(major => (
+                    <label key={major} className="flex items-center">
+                      <input
+                        type="checkbox"
+                        checked={filters.majors.includes(major)}
+                        onChange={() => toggleFilter('majors', major)}
+                        className="form-checkbox h-5 w-5 text-blue-600 rounded border-gray-300"
+                      />
+                      <span className="ml-2 text-gray-700">{major}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
               {/* Time Period */}
               <div>
                 <h3 className="font-medium text-gray-900 mb-3">Time Period</h3>
                 <div className="space-y-2">
-                  {['Summer', 'School Year'].map(period => (
+                  {filterOptions.period.map(period => (
                     <label key={period} className="flex items-center">
                       <input
                         type="checkbox"
@@ -107,7 +206,7 @@ export default function ExtracurricularDatabase() {
               <div>
                 <h3 className="font-medium text-gray-900 mb-3">Type</h3>
                 <div className="space-y-2">
-                  {['Competition', 'Internship', 'Leadership', 'Research'].map(type => (
+                  {filterOptions.type.map(type => (
                     <label key={type} className="flex items-center">
                       <input
                         type="checkbox"
@@ -121,11 +220,29 @@ export default function ExtracurricularDatabase() {
                 </div>
               </div>
 
+              {/* Format */}
+              <div>
+                <h3 className="font-medium text-gray-900 mb-3">Format</h3>
+                <div className="space-y-2">
+                  {filterOptions.format.map(format => (
+                    <label key={format} className="flex items-center">
+                      <input
+                        type="checkbox"
+                        checked={filters.format.includes(format)}
+                        onChange={() => toggleFilter('format', format)}
+                        className="form-checkbox h-5 w-5 text-blue-600 rounded border-gray-300"
+                      />
+                      <span className="ml-2 text-gray-700">{format}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
               {/* Cost */}
               <div>
                 <h3 className="font-medium text-gray-900 mb-3">Cost</h3>
                 <div className="space-y-2">
-                  {['Free', 'Low Cost', 'Medium Cost'].map(cost => (
+                  {filterOptions.financialRating.map(cost => (
                     <label key={cost} className="flex items-center">
                       <input
                         type="checkbox"
@@ -146,7 +263,7 @@ export default function ExtracurricularDatabase() {
                   <input
                     type="checkbox"
                     checked={filters.isHighlySelective}
-                    onChange={(e) => setFilters(prev => ({ ...prev, isHighlySelective: e.target.checked }))}
+                    onChange={() => toggleFilter('isHighlySelective', '')}
                     className="form-checkbox h-5 w-5 text-blue-600 rounded border-gray-300"
                   />
                   <span className="ml-2 text-gray-700">Highly Selective</span>
@@ -165,6 +282,8 @@ export default function ExtracurricularDatabase() {
                 type="text"
                 placeholder="Search opportunities..."
                 className="w-full p-3 pl-10 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
               <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             </div>
@@ -172,18 +291,20 @@ export default function ExtracurricularDatabase() {
 
           {/* Activities Grid */}
           <div className="grid grid-cols-1 gap-6">
-            {sampleActivities.map((activity, index) => (
+            {filteredActivities.map((activity, index) => (
               <div key={index} className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
                 <div className="flex justify-between items-start mb-4">
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-1">{activity.title}</h3>
                     <p className="text-sm text-gray-500">{activity.description}</p>
                   </div>
-                  {activity.isHighlySelective && (
-                    <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">
-                      Selective
-                    </span>
-                  )}
+                  <div className="flex flex-col items-end gap-2">
+                    {activity.isHighlySelective && (
+                      <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">
+                        Highly Selective
+                      </span>
+                    )}
+                  </div>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4 text-sm mb-4">
@@ -196,8 +317,10 @@ export default function ExtracurricularDatabase() {
                     <span className="ml-2 text-gray-900">{activity.period}</span>
                   </div>
                   <div>
-                    <span className="text-gray-600">Location:</span>
-                    <span className="ml-2 text-gray-900">{activity.location}</span>
+                    <span className="text-gray-600">Format:</span>
+                    <span className="ml-2 text-gray-900">
+                      {activity.location === 'Hybrid' ? 'Hybrid' : activity.isOnline ? 'Online' : 'In-Person'}
+                    </span>
                   </div>
                   <div>
                     <span className="text-gray-600">Cost:</span>
@@ -205,7 +328,7 @@ export default function ExtracurricularDatabase() {
                   </div>
                 </div>
 
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 mb-4">
                   {activity.interests.map((interest, i) => (
                     <span
                       key={i}
@@ -221,13 +344,24 @@ export default function ExtracurricularDatabase() {
                     <span className="text-sm text-gray-600">
                       Deadline: {activity.deadline}
                     </span>
-                    <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors text-sm">
+                    <a
+                      href={activity.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors text-sm"
+                    >
                       Learn More
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>
             ))}
+
+            {filteredActivities.length === 0 && (
+              <div className="text-center py-12">
+                <p className="text-gray-500 text-lg">No opportunities found matching your criteria.</p>
+              </div>
+            )}
           </div>
         </div>
       </div>
