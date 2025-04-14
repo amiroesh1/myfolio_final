@@ -168,20 +168,6 @@
     "url": "https://about.bankofamerica.com/en/making-an-impact/student-leaders"
   },
   {
-    "title": "Meta Summer Academy",
-    "category": "Business",
-    "type": "Internship",
-    "deadline": "Rolling",
-    "location": "Various Locations",
-    "isOnline": false,
-    "interests": ["Business", "Technology"],
-    "period": "Summer",
-    "financialRating": "Paid - $5,000 Stipend",
-    "isHighlySelective": true,
-    "description": "Offers hands-on experience in the tech industry.",
-    "url": "https://about.meta.com/"
-  },
-  {
     "title": "Building-U Internship",
     "category": "Business",
     "type": "Internship",
@@ -308,20 +294,6 @@
     "url": "https://precollege.cmu.edu/"
   },
   {
-    "title": "Google Computer Science Summer Institute",
-    "category": "Computer Science",
-    "type": "Internship",
-    "deadline": "Rolling",
-    "location": "Online",
-    "isOnline": true,
-    "interests": ["Computer Science", "Programming", "Web Development"],
-    "period": "Summer",
-    "financialRating": "Free - Housing & Meals Included",
-    "isHighlySelective": true,
-    "description": "Coding workshops for underrepresented groups.",
-    "url": "https://buildyourfuture.withgoogle.com/"
-  },
-  {
     "title": "Ladder Internships",
     "category": "Computer Science",
     "type": "Internship",
@@ -334,20 +306,6 @@
     "isHighlySelective": true,
     "description": "Matches students with tech startups.",
     "url": "https://ladderinternships.com/"
-  },
-  {
-    "title": "Meta Summer Academy",
-    "category": "Computer Science",
-    "type": "Internship",
-    "deadline": "Rolling",
-    "location": "Various Locations",
-    "isOnline": false,
-    "interests": ["Computer Science", "Software Engineering"],
-    "period": "Summer",
-    "financialRating": "Paid - $8,000 Stipend",
-    "isHighlySelective": true,
-    "description": "Mentorship in software engineering.",
-    "url": "https://about.meta.com/"
   },
   {
     "title": "Microsoft High School Internship",
@@ -644,20 +602,6 @@
     "url": "https://academy.autodesk.com/"
   },
   {
-    "title": "Microsoft High School Engineering Internship",
-    "category": "Engineering",
-    "type": "Internship",
-    "deadline": "January 2025",
-    "location": "Redmond, WA",
-    "isOnline": false,
-    "interests": ["Engineering", "Software", "AI", "Cloud Computing"],
-    "period": "Summer",
-    "financialRating": "Paid - $25/hour",
-    "isHighlySelective": true,
-    "description": "Software engineering, AI, and cloud computing projects.",
-    "url": "https://careers.microsoft.com/"
-  },
-  {
     "title": "MIT Beaver Works Summer Institute",
     "category": "Engineering",
     "type": "Program",
@@ -740,20 +684,6 @@
     "isHighlySelective": true,
     "description": "Present original engineering research to win scholarships.",
     "url": "https://www.societyforscience.org/isef/"
-  },
-  {
-    "title": "Google Science Fair",
-    "category": "Engineering",
-    "type": "Competition",
-    "deadline": "December 2024",
-    "location": "Online",
-    "isOnline": true,
-    "interests": ["Engineering", "Technology", "Innovation"],
-    "period": "School Year",
-    "financialRating": "Free - Scholarship Prizes Available",
-    "isHighlySelective": true,
-    "description": "Solve real-world problems using engineering and technology.",
-    "url": "https://www.googlesciencefair.com/"
   },
   {
     "title": "Future Engineers Challenges",
