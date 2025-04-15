@@ -59,7 +59,8 @@ export default function MyfolioLaunch() {
           
           <p className="text-lg text-[#475569] mt-12">
             Let's build something extraordinary together.<br/>
-            From CEO, Ansar
+            From the Founders,
+            Ansar & Amir
           </p>
         </div>
       </article>
