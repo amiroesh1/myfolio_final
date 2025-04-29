@@ -1,42 +1,65 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useUser, SignIn } from '@clerk/nextjs';
 import ExtracurricularDatabase from '../components/ExtracurricularDatabase';
+import CompareProfile from '../components/CompareProfile';
+import AIPoweredExtracurricularFinder from '../components/AIPoweredExtracurricularFinder';
+import AIChat from '../components/AIChat';
 
 export default function Features() {
   const { isSignedIn } = useUser();
+  const [activeTab, setActiveTab] = useState('extracurricular');
+
+  const renderActiveTab = () => {
+    switch (activeTab) {
+      case 'mentor':
+        return <AIChat />;
+      case 'compare':
+        return <CompareProfile />;
+      case 'finder':
+        return <AIPoweredExtracurricularFinder />;
+      case 'extracurricular':
+      default:
+        return <ExtracurricularDatabase />;
+    }
+  };
 
   return (
     <main
       className="relative min-h-screen"
       style={{
-        background:
-          'linear-gradient(to right, rgb(243, 238, 255), rgb(236, 242, 255), rgb(230, 247, 255))',
+        background: 'linear-gradient(to right, rgb(243, 238, 255), rgb(236, 242, 255), rgb(230, 247, 255))',
       }}
     >
-      {/* Контент страницы */}
       <div className={`transition-all duration-300 ${!isSignedIn ? 'blur-md brightness-50' : ''}`}>
         <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-16">
           <div className="max-w-7xl mx-auto">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-center text-[#1E293B] mb-4 sm:mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-center text-[#1E293B] mb-6">
               MyFolio Features
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-[#475569] text-center mb-8 sm:mb-16 px-4">
-              Discover opportunities to enhance your college application — explore curated programs, competitions, internships designed to boost your profile.
-            </p>
-
-            <section className="mt-8 sm:mt-16">
-              <h2 className="text-2xl sm:text-3xl font-bold text-[#1E293B] mb-6 sm:mb-8 text-center">
-                Browse Opportunities
-              </h2>
-              <ExtracurricularDatabase />
-            </section>
+            <div className="flex flex-wrap justify-center gap-2 mb-8">
+            <button onClick={() => setActiveTab('extracurricular')} className={`px-4 py-2 rounded-full ${activeTab === 'extracurricular' ? 'bg-indigo-600 text-white' : 'bg-white text-gray-700'} shadow`}>
+                Extracurricular Database
+              </button>
+              <button onClick={() => setActiveTab('compare')} className={`px-4 py-2 rounded-full ${activeTab === 'compare' ? 'bg-indigo-600 text-white' : 'bg-white text-gray-700'} shadow`}>
+                Compare Profile
+              </button>
+              <button onClick={() => setActiveTab('finder')} className={`px-4 py-2 rounded-full ${activeTab === 'finder' ? 'bg-indigo-600 text-white' : 'bg-white text-gray-700'} shadow`}>
+                AI-Powered Extracurricular Finder
+              </button>
+              {/* <button onClick={() => setActiveTab('extracurricular')} className={`px-4 py-2 rounded-full ${activeTab === 'extracurricular' ? 'bg-indigo-600 text-white' : 'bg-white text-gray-700'} shadow`}>
+                Extracurricular Database
+              </button> */}
+              <button onClick={() => setActiveTab('mentor')} className={`px-4 py-2 rounded-full ${activeTab === 'mentor' ? 'bg-indigo-600 text-white' : 'bg-white text-gray-700'} shadow`}>
+                AI Application Mentor
+              </button>
+            </div>
+            {renderActiveTab()}
           </div>
         </div>
       </div>
 
-      {/* Ограниченная форма логина — теперь не закрывает навбар */}
       {!isSignedIn && (
         <div className="fixed top-40 left-0 w-full z-40 flex items-center justify-center">
           <div className="bg-white/90 p-6 rounded-2xl shadow-xl backdrop-blur-md max-w-md w-full mx-4">
