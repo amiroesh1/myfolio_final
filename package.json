@@ -13,16 +13,20 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@clerk/nextjs": "^6.14.3",
+    "@clerk/backend": "^1.31.2",
+    "@clerk/nextjs": "^6.18.5",
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
+    "@tailwindcss/typography": "^0.5.16",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vercel/analytics": "^1.5.0",
     "axios": "^1.8.3",
     "next": "^15.2.2",
+    "openai": "^4.97.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-hot-toast": "^2.5.2",
     "react-icons": "latest"
   },
   "devDependencies": {
