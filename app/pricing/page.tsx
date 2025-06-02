@@ -14,7 +14,7 @@ export default function Pricing() {
           <div className="mb-8">
             <h2 className="text-2xl font-bold text-[#1E293B] mb-2">Basic Start</h2>
             <div className="text-3xl font-bold text-[#4F46E5] mb-4">
-              990 ₸<span className="text-lg text-[#475569]">/month</span>
+              2.99 $<span className="text-lg text-[#475569]">/month</span>
             </div>
             <p className="text-[#475569]">Your first step towards your dream university starts here!</p>
           </div>
@@ -53,7 +53,7 @@ export default function Pricing() {
           <div className="mb-8">
             <h2 className="text-2xl font-bold text-[#1E293B] mb-2">Professional Preparation</h2>
             <div className="text-3xl font-bold text-[#4F46E5] mb-4">
-              1990 ₸<span className="text-lg text-[#475569]">/month</span>
+              5.99 $<span className="text-lg text-[#475569]">/month</span>
             </div>
             <p className="text-[#475569]">Complete toolkit for serious applicants!</p>
           </div>
