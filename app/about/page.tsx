@@ -217,6 +217,10 @@ export default function About() {
                   <li className="text-[#475569]">+7 707 988 5040</li>
                   <li className="text-[#475569]">Turar Ryskylov 14</li>
                   <li className="text-[#475569]">Astana, KZ 94105</li>
+                  <li className="text-[#475569]">pasuwatasiwan@gmail.com</li>
+                  <li className="text-[#475569]">+66 611451510</li>
+                  <li className="text-[#475569]">bangkok, TH 10900
+</li>
                 </ul>
               </div>
               <div>
