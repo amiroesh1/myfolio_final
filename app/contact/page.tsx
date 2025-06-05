@@ -10,6 +10,9 @@ export default function Contact() {
           <strong>Email us at:</strong> <a href="mailto:sunkarulyansar@gmail.com" className="text-blue-600 underline hover:text-blue-800">sunkarulyansar@gmail.com</a>
         </p>
         <p className="text-[#475569] text-lg mb-6 text-center">
+          <strong>Email us at:</strong> <a href="mailto:sunkarulyansar@gmail.com" className="text-blue-600 underline hover:text-blue-800">sunkarulyansar@gmail.com</a>
+        </p>
+        <p className="text-[#475569] text-lg mb-6 text-center">
           <strong>Follow us on:</strong>
         </p>
         <ul className="list-none space-y-4 text-center">
