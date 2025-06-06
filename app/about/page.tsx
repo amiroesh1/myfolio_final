@@ -58,7 +58,7 @@ export default function About() {
                   <FaClock className="text-blue-500" />
                 </div>
                 <h3 className="text-xl font-semibold text-[#4F46E5] mb-3">
-                  AI Application Mentor (Coming Soon)
+                  AI Application Mentor
                 </h3>
                 <p className="text-[#475569] text-base">
                   Get real-time feedback and personalized recommendations for your college applications.
@@ -73,7 +73,7 @@ export default function About() {
                   <FaClock className="text-blue-500" />
                 </div>
                 <h3 className="text-xl font-semibold text-[#4F46E5] mb-3">
-                  Compare Profile (Coming Soon)
+                  Compare Profile
                 </h3>
                 <p className="text-[#475569] text-base">
                   See how you measure up against successful applicants at your dream schools.
@@ -88,7 +88,7 @@ export default function About() {
                   <FaClock className="text-blue-500" />
                 </div>
                 <h3 className="text-xl font-semibold text-[#4F46E5] mb-3">
-                  AI-Powered Extracurricular Finder (Coming Soon)
+                  AI-Powered Extracurricular Finder 
                 </h3>
                 <p className="text-[#475569] text-base">
                   Let AI match you with perfect extracurricular activities based on your interests.
