@@ -45,17 +45,8 @@ export default function Navigation() {
                 <Link href="/blog" className="text-[#475569] hover:text-[#1E293B] text-[15px]">
                   Blog
                 </Link>
-                {isSignedIn ? (
-                  <Link href="/dashboard" className="text-[#475569] hover:text-[#1E293B] text-[15px]">
-                    Dashboard
-                  </Link>
-                ) : (
-                  <Link href="/features" className="text-[#475569] hover:text-[#1E293B] text-[15px]">
-                    Features
-                  </Link>
-                )}
-                <Link href="/pricing" className="text-[#475569] hover:text-[#1E293B] text-[15px]">
-                  Pricing
+                <Link href="/dashboard" className="text-[#475569] hover:text-[#1E293B] text-[15px]">
+                  Dashboard
                 </Link>
                 <Link href="/contact" className="text-[#475569] hover:text-[#1E293B] text-[15px]">
                   Contact
@@ -112,29 +103,12 @@ export default function Navigation() {
                 >
                   Blog
                 </Link>
-                {isSignedIn ? (
-                  <Link
-                    href="/dashboard"
-                    className="block text-[#475569] hover:text-[#1E293B] py-2 text-[15px]"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Dashboard
-                  </Link>
-                ) : (
-                  <Link
-                    href="/features"
-                    className="block text-[#475569] hover:text-[#1E293B] py-2 text-[15px]"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Features
-                  </Link>
-                )}
                 <Link
-                  href="/pricing"
+                  href="/dashboard"
                   className="block text-[#475569] hover:text-[#1E293B] py-2 text-[15px]"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Pricing
+                  Dashboard
                 </Link>
                 <Link
                   href="/contact"

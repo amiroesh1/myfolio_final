@@ -1,0 +1,22 @@
+#!/bin/bash
+
+echo "🔧 Инструкция по получению DATABASE_URL из Supabase"
+echo ""
+echo "1. Зайди на https://supabase.com/dashboard"
+echo "2. Выбери проект: lqgurdhcxzjchudxuuts"
+echo "3. Project Settings → Database"
+echo "4. Connection string → URI (НЕ connection pooling!)"
+echo "5. Скопируй всю строку полностью"
+echo ""
+echo "После того как скопируешь connection string, выполни:"
+echo ""
+echo "cat > .env.local << 'EOF'"
+echo "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_c3VwcmVtZS1icmVhbS05NS5jbGVyay5hY2NvdW50cy5kZXYk"
+echo "CLERK_SECRET_KEY=sk_test_00eCNXg6NFaXmQKBYaEjEUN5jjruG9loacCCyVJv6e"
+echo "NEXT_PUBLIC_SUPABASE_URL=https://lqgurdhcxzjchudxuuts.supabase.co"
+echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxxZ3VyZGhjeHpqY2h1ZHh1dXRzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2OTEzMTcsImV4cCI6MjA4MDI2NzMxN30.bS0tS4ODfJNXKLAePTIaYkB4NnXmNyUOl0VMiV1B7KE"
+echo "DATABASE_URL=\"ВСТАВЬ_СЮДА_СКОПИРОВАННУЮ_СТРОКУ_ИЗ_SUPABASE\""
+echo "EOF"
+echo ""
+echo "⚠️  Важно: замени ВСТАВЬ_СЮДА_СКОПИРОВАННУЮ_СТРОКУ_ИЗ_SUPABASE на реальную строку с паролем!"
+

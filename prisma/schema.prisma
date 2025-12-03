@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum StoryStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model Story {
+  id        String      @id @default(cuid())
+  name      String
+  date      DateTime
+  link      String?
+  // Short summary for cards/listing, optional
+  summary   String?
+  // Full structured content: array of sections with title, content, imageUrl etc.
+  sections  Json
+  status    StoryStatus @default(PENDING)
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+}
+
+

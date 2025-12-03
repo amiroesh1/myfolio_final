@@ -304,7 +304,7 @@ export default function ExtracurricularDatabase() {
           {/* Activities Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
             {filteredActivities.map((activity, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-sm p-4 sm:p-6 hover:shadow-md transition-shadow">
+            <div key={index} className="bg-white rounded-lg shadow-sm p-4 sm:p-6 hover:shadow-lg transition-shadow transition-transform duration-200 hover:-translate-y-1">
                 <div className="flex flex-col sm:flex-row justify-between items-start gap-2 sm:gap-4 mb-4">
                   <div className="flex-1 min-w-0">
                     <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-1 line-clamp-2">{activity.title}</h3>
