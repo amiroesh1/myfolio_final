@@ -93,32 +93,34 @@ export default function Home() {
           </div>
         </div>
 
-        {/* “Главный экран” с тремя большими блоками */}
-        <section className="space-y-12">
-          <div className="grid gap-10 lg:grid-cols-[1.3fr,1fr] items-start">
-            <div>
+        {/* Main content sections */}
+        <section className="space-y-16">
+          {/* Stories and Profiles Grid */}
+          <div className="grid gap-8 lg:grid-cols-[1.3fr,1fr] items-start">
+            <div className="bg-white/80 rounded-2xl shadow-sm p-6">
               <DashboardStories />
             </div>
-            <div>
+            <div className="bg-white/80 rounded-2xl shadow-sm p-6">
               <ApplicationProfiles />
             </div>
           </div>
 
+          {/* Extracurricular Database */}
           <div className="bg-white/80 rounded-3xl shadow-sm border border-slate-100">
-            <div className="px-4 py-4 sm:px-6 sm:py-6 border-b border-slate-100 flex items-center justify-between">
+            <div className="px-6 py-5 border-b border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
               <div>
-                <h2 className="text-lg sm:text-xl font-semibold text-slate-900">
+                <h2 className="text-xl font-semibold text-slate-900">
                   Explore Extracurricular Opportunities
                 </h2>
-                <p className="text-xs sm:text-sm text-slate-500 mt-1">
+                <p className="text-sm text-slate-500 mt-1">
                   Find programs, competitions, and internships that match your interests.
                 </p>
               </div>
-              <span className="hidden sm:inline-flex text-xs px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 font-medium">
+              <span className="text-xs px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 font-medium">
                 Live from database
               </span>
             </div>
-            <div className="pb-4 sm:pb-6">
+            <div className="-mx-4 sm:-mx-6 lg:-mx-8">
               <ExtracurricularDatabase />
             </div>
           </div>
