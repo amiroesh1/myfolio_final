@@ -11,6 +11,9 @@ node_modules
 .next/
 out/
 
+# Python virtualenv
+app/venv/
+
 # Vercel
 .vercel
 
