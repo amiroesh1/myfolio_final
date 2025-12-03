@@ -1,10 +1,13 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { FaTrophy, FaRobot, FaChartLine, FaSearch, FaClock } from 'react-icons/fa';
+import { FaTrophy, FaChartLine, FaSearch } from 'react-icons/fa';
+// Story imports removed
 
 export default function About() {
+  // Stories section removed
+
   return (
    <main className="min-h-screen" style={{ background: 'linear-gradient(to right, rgb(243, 238, 255), rgb(236, 242, 255), rgb(230, 247, 255))' }}>
       <div className="container mx-auto px-4 py-16">
@@ -17,12 +20,12 @@ export default function About() {
                 <span className="text-[#4F46E5]">College Portfolio</span>
               </h1>
               <p className="text-xl text-[#475569] max-w-2xl mx-auto mb-12">
-                AI-powered guidance to help students showcase their achievements, explore 
-                extracurriculars, and optimize applications for top universities.
+                Discover real student stories, explore extracurricular opportunities, 
+                and build your standout application with MyFolio.
               </p>
               <div>
                 <Link 
-                  href="/features" 
+                  href="/dashboard" 
                   className="bg-[#4F46E5] text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-[#4338CA] transition-colors duration-300"
                 >
                   Start Now – It's Free
@@ -36,69 +39,67 @@ export default function About() {
 
           {/* Core Features Section */}
           <section className="mb-16">
-            <h2 className="text-2xl font-bold text-[#1E293B] mb-12">Key Features</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-                <div className="text-[#4F46E5] mb-4">
-                  <FaTrophy className="h-8 w-8" />
+            <h2 className="text-2xl font-bold text-[#1E293B] mb-4">What We Offer</h2>
+            <p className="text-[#64748B] mb-12">Explore our available features and discover opportunities to build your perfect college portfolio.</p>
+            <div className="grid md:grid-cols-3 gap-8">
+              <Link 
+                href="/dashboard?tab=database"
+                className="group bg-white p-8 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-2 border-transparent hover:border-[#4F46E5] cursor-pointer"
+              >
+                <div className="text-[#4F46E5] mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                  <FaTrophy className="h-10 w-10" />
                 </div>
-                <h3 className="text-xl font-semibold text-[#4F46E5] mb-3">
+                <h3 className="text-xl font-semibold text-[#4F46E5] mb-3 group-hover:text-[#4338CA] transition-colors">
                   Extracurricular Database
                 </h3>
-                <p className="text-[#475569] text-base">
+                <p className="text-[#475569] text-base mb-4">
                   Browse our curated database of verified extracurriculars and competitions. Discover opportunities that colleges love to see.
                 </p>
-              </div>
+                <div className="text-sm text-[#4F46E5] font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                  Explore now →
+                </div>
+              </Link>
 
-              <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow relative">
-                <div className="text-[#4F46E5] mb-4">
-                  <FaRobot className="h-8 w-8" />
+              <Link 
+                href="/dashboard?tab=stories"
+                className="group bg-white p-8 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-2 border-transparent hover:border-[#4F46E5] cursor-pointer"
+              >
+                <div className="text-[#4F46E5] mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                  <FaChartLine className="h-10 w-10" />
                 </div>
-                <div className="absolute top-4 right-4">
-                  <FaClock className="text-blue-500" />
-                </div>
-                <h3 className="text-xl font-semibold text-[#4F46E5] mb-3">
-                  AI Application Mentor
+                <h3 className="text-xl font-semibold text-[#4F46E5] mb-3 group-hover:text-[#4338CA] transition-colors">
+                  Student Stories
                 </h3>
-                <p className="text-[#475569] text-base">
-                  Get real-time feedback and personalized recommendations for your college applications.
+                <p className="text-[#475569] text-base mb-4">
+                  Read real experiences from students who got into top universities. Learn from their journeys and see what made them stand out.
                 </p>
-              </div>
+                <div className="text-sm text-[#4F46E5] font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                  Read stories →
+                </div>
+              </Link>
 
-              <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow relative">
-                <div className="text-[#4F46E5] mb-4">
-                  <FaChartLine className="h-8 w-8" />
+              <Link 
+                href="/dashboard?tab=applications"
+                className="group bg-white p-8 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-2 border-transparent hover:border-[#4F46E5] cursor-pointer"
+              >
+                <div className="text-[#4F46E5] mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                  <FaSearch className="h-10 w-10" />
                 </div>
-                <div className="absolute top-4 right-4">
-                  <FaClock className="text-blue-500" />
-                </div>
-                <h3 className="text-xl font-semibold text-[#4F46E5] mb-3">
-                  Compare Profile
+                <h3 className="text-xl font-semibold text-[#4F46E5] mb-3 group-hover:text-[#4338CA] transition-colors">
+                  Application Profiles
                 </h3>
-                <p className="text-[#475569] text-base">
-                  See how you measure up against successful applicants at your dream schools.
+                <p className="text-[#475569] text-base mb-4">
+                  Compare your profile with successful applicants. See detailed breakdowns of what got students into their dream schools.
                 </p>
-              </div>
-
-              <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow relative">
-                <div className="text-[#4F46E5] mb-4">
-                  <FaSearch className="h-8 w-8" />
+                <div className="text-sm text-[#4F46E5] font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                  View profiles →
                 </div>
-                <div className="absolute top-4 right-4">
-                  <FaClock className="text-blue-500" />
-                </div>
-                <h3 className="text-xl font-semibold text-[#4F46E5] mb-3">
-                  AI-Powered Extracurricular Finder 
-                </h3>
-                <p className="text-[#475569] text-base">
-                  Let AI match you with perfect extracurricular activities based on your interests.
-                </p>
-              </div>
+              </Link>
             </div>
           </section>
 
           {/* Community Stats Section */}
-<section className="text-center bg-white p-8 rounded-xl shadow-sm mb-16">
+          <section className="text-center bg-white p-8 rounded-xl shadow-sm mb-16">
   <h2 className="text-2xl font-bold text-[#1E293B] mb-6">Our Growing Community</h2>
   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 justify-center">
     <div>
@@ -110,14 +111,14 @@ export default function About() {
       <div className="text-[#475569]">AI-Powered Support</div>
     </div>
   </div>
-</section>
+          </section>
 
 
           {/* Interactive Goals Section */}
           <section className="mb-16">
             <h2 className="text-2xl font-bold text-[#1E293B] mb-6 text-center">Select Your Goal</h2>
             <div className="grid md:grid-cols-3 gap-6">
-              <Link href="/features" className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow cursor-pointer border-2 border-transparent hover:border-[#4F46E5]">
+              <Link href="/dashboard" className="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow transition-transform duration-200 hover:-translate-y-1 cursor-pointer border-2 border-transparent hover:border-[#4F46E5]">
                 <h3 className="text-xl font-semibold text-[#4F46E5] mb-3">
                   Find Competitions
                 </h3>
@@ -126,7 +127,7 @@ export default function About() {
                 </p>
               </Link>
 
-              <Link href="/features" className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow cursor-pointer border-2 border-transparent hover:border-[#4F46E5]">
+              <Link href="/dashboard" className="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow transition-transform duration-200 hover:-translate-y-1 cursor-pointer border-2 border-transparent hover:border-[#4F46E5]">
                 <h3 className="text-xl font-semibold text-[#4F46E5] mb-3">
                   Structure Your Portfolio
                 </h3>
@@ -135,7 +136,7 @@ export default function About() {
                 </p>
               </Link>
 
-              <Link href="/features" className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow cursor-pointer border-2 border-transparent hover:border-[#4F46E5]">
+              <Link href="/dashboard" className="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow transition-transform duration-200 hover:-translate-y-1 cursor-pointer border-2 border-transparent hover:border-[#4F46E5]">
                 <h3 className="text-xl font-semibold text-[#4F46E5] mb-3">
                   Get Mentorship
                 </h3>
@@ -191,7 +192,7 @@ export default function About() {
               Join thousands of students who are crafting their perfect college portfolios with MyFolio.
             </p>
             <Link 
-                  href="/features" 
+                  href="/dashboard" 
                   className="bg-[#4F46E5] text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-[#4338CA] transition-colors duration-300"
                 >
                   Start Now – It's Free
@@ -213,14 +214,10 @@ export default function About() {
               <div>
                 <h3 className="font-semibold text-[#1E293B] mb-4">Contact</h3>
                 <ul className="space-y-2">
-                  <li className="text-[#475569]">sunkarulyansar@gmail.com</li>
-                  <li className="text-[#475569]">+7 707 988 5040</li>
+                  <li className="text-[#475569]">amir.mirmanov11@gmail.com</li>
+                  <li className="text-[#475569]">+7 777 050 8282</li>
                   <li className="text-[#475569]">Turar Ryskylov 14</li>
-                  <li className="text-[#475569]">Astana, KZ 94105</li>
-                  <li className="text-[#475569]">pasuwatasiwan@gmail.com</li>
-                  <li className="text-[#475569]">+66 611451510</li>
-                  <li className="text-[#475569]">bangkok, TH 10900
-</li>
+                  <li className="text-[#475569]">Astana, KZ 010000</li>
                 </ul>
               </div>
               <div>
