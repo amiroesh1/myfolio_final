@@ -68,6 +68,27 @@ export default function Dashboard() {
     }
   };
 
+  // Если не залогинен, показываем только форму входа
+  if (!isSignedIn) {
+    return (
+      <main
+        className="relative min-h-screen flex items-center justify-center"
+        style={{
+          background:
+            'linear-gradient(to right, rgb(235, 240, 255), rgb(233, 244, 255), rgb(230, 247, 252))',
+        }}
+      >
+        <div className="bg-white/90 p-6 rounded-2xl shadow-xl backdrop-blur-md max-w-md w-full mx-4">
+          <h2 className="text-2xl font-bold text-center mb-4 text-gray-800">
+            Please Sign In to Access Your Dashboard
+          </h2>
+          <SignIn redirectUrl="/dashboard" />
+        </div>
+      </main>
+    );
+  }
+
+  // Показываем dashboard только для залогиненных пользователей
   return (
     <main
       className="relative min-h-screen"
@@ -144,17 +165,6 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
-
-      {!isSignedIn && (
-        <div className="fixed top-40 left-0 w-full z-40 flex items-center justify-center">
-          <div className="bg-white/90 p-6 rounded-2xl shadow-xl backdrop-blur-md max-w-md w-full mx-4">
-            <h2 className="text-2xl font-bold text-center mb-4 text-gray-800">
-              Please Sign In to Access Your Dashboard
-            </h2>
-            <SignIn redirectUrl="/dashboard" />
-          </div>
-        </div>
-      )}
     </main>
   );
 }

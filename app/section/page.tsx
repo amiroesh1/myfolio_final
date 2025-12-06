@@ -9,7 +9,7 @@ export default function StoriesPage() {
   const [stories, setStories] = useState<Story[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Form removed - coming soon with Supabase
+  // Form removed - coming soon
 
   const [search, setSearch] = useState<string>('');
 
