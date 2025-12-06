@@ -16,11 +16,12 @@ async function readStories() {
 // GET /api/stories/[id]
 export async function GET(
   _req: NextRequest,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
+    const { id } = await params;
     const stories = await readStories();
-    const story = stories.find((s: any) => s.id === params.id);
+    const story = stories.find((s: any) => s.id === id);
 
     if (!story) {
       return NextResponse.json({ error: 'Not found' }, { status: 404 });

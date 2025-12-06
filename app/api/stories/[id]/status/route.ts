@@ -38,7 +38,7 @@ async function writeStories(stories: any[]) {
 // PATCH /api/stories/[id]/status
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
   const { userId } = await auth();
   if (!userId) {
@@ -54,6 +54,7 @@ export async function PATCH(
   }
 
   try {
+    const { id } = await params;
     const body = await req.json();
     const { status, summary, sections, coverImage } = body;
 
@@ -65,7 +66,7 @@ export async function PATCH(
     }
 
     const stories = await readStories();
-    const storyIndex = stories.findIndex((s: any) => s.id === params.id);
+    const storyIndex = stories.findIndex((s: any) => s.id === id);
 
     if (storyIndex === -1) {
       return NextResponse.json({ error: 'Story not found' }, { status: 404 });
@@ -103,7 +104,7 @@ export async function PATCH(
     stories[storyIndex] = updatedStory;
     await writeStories(stories);
 
-    console.log(`✅ Story ${params.id} status updated to ${status} by user ${userId}`);
+    console.log(`✅ Story ${id} status updated to ${status} by user ${userId}`);
     return NextResponse.json(updatedStory);
   } catch (error: any) {
     console.error('❌ Failed to update story status', error);
