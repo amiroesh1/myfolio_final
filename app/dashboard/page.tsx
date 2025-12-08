@@ -111,7 +111,7 @@ export default function Dashboard() {
                 </p>
               </div>
               <Link
-                href="/about"
+                href="/"
                 className="self-start md:self-auto inline-flex items-center px-4 py-2 rounded-full bg-white/80 hover:bg-white text-[#4F46E5] text-sm font-semibold shadow-sm hover:shadow-md transition-colors transition-shadow duration-200"
               >
                 Back to MyFolio

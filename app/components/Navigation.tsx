@@ -29,7 +29,7 @@ export default function Navigation() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
-            <Link href="/about" className="flex items-center space-x-2">
+            <Link href="/" className="flex items-center space-x-2">
               <FaGraduationCap className="h-8 w-8 text-[#4F46E5]" />
               <span className="text-lg font-bold text-[#4F46E5]">MyFolio</span>
             </Link>
@@ -39,7 +39,7 @@ export default function Navigation() {
           <div className="hidden md:flex items-center space-x-8">
             {!isDashboard && (
               <>
-                <Link href="/about" className="text-[#475569] hover:text-[#1E293B] text-[15px]">
+                <Link href="/" className="text-[#475569] hover:text-[#1E293B] text-[15px]">
                   About
                 </Link>
                 <Link href="/blog" className="text-[#475569] hover:text-[#1E293B] text-[15px]">
@@ -90,7 +90,7 @@ export default function Navigation() {
             {!isDashboard && (
               <>
                 <Link
-                  href="/about"
+                  href="/"
                   className="block text-[#475569] hover:text-[#1E293B] py-2 text-[15px]"
                   onClick={() => setIsMenuOpen(false)}
                 >
