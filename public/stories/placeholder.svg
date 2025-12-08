@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" role="img" aria-labelledby="title desc">
+  <title id="title">Story placeholder</title>
+  <desc id="desc">Muted gradient background with MyFolio text</desc>
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#dbeafe"/>
+      <stop offset="100%" stop-color="#e9d5ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="360" fill="url(#g)"/>
+  <g fill="#4338ca" font-family="Inter, Arial, sans-serif" font-weight="700" font-size="48" text-anchor="middle">
+    <text x="300" y="190" opacity="0.22">MyFolio</text>
+  </g>
+</svg>
+

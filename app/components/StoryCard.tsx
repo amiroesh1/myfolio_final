@@ -48,8 +48,12 @@ export function StoryCard({ story, compact = false }: StoryCardProps) {
     sections = [];
   }
 
-  // Получаем изображение - из coverImage или из первой секции
-  const coverImage = story.coverImage || (sections && sections.length > 0 && sections[0]?.imageUrl) || null;
+  // Получаем изображение - из coverImage или из первой секции, иначе плейсхолдер
+  const placeholderImage = '/stories/placeholder.svg';
+  const coverImage =
+    story.coverImage ||
+    (sections && sections.length > 0 && sections[0]?.imageUrl) ||
+    placeholderImage;
 
   const previewText =
     story.summary ||
