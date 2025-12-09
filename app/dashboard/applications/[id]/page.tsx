@@ -2,7 +2,7 @@
 
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { APPLICATION_PROFILES } from '../../../components/applicationData';
 
 const SECTIONS = [
@@ -20,6 +20,30 @@ export default function ApplicationDetailPage() {
   const router = useRouter();
   const [activeSection, setActiveSection] = useState('demographics');
   const profile = APPLICATION_PROFILES.find((p) => p.id === params.id);
+
+  const sections = useMemo(() => {
+    if (!profile) return [];
+    const s = [
+      { id: 'demographics', label: 'Demographics', icon: '👤' },
+      { id: 'academics', label: 'Academics + Test Scores', icon: '📚' },
+    ];
+    if ((profile.apScores && profile.apScores.length > 0) || (profile.ibScores && profile.ibScores.length > 0)) {
+      s.push({ id: 'ap-ib', label: 'AP/IB Exam Scores', icon: '📝' });
+    }
+    if (profile.extracurriculars && profile.extracurriculars.length > 0) {
+      s.push({ id: 'extracurriculars', label: 'Extracurriculars', icon: '🏆' });
+    }
+    if (profile.awards && profile.awards.length > 0) {
+      s.push({ id: 'awards', label: 'Awards & Honors', icon: '🎖️' });
+    }
+    if (profile.collegeDecisions && profile.collegeDecisions.length > 0) {
+      s.push({ id: 'decisions', label: 'College Decisions', icon: '🎓' });
+    }
+    if (profile.recommendationLetter?.content) {
+      s.push({ id: 'recommendation', label: 'Recommendation Letter', icon: '✉️' });
+    }
+    return s;
+  }, [profile]);
 
   if (!profile) {
     return (
@@ -57,13 +81,13 @@ export default function ApplicationDetailPage() {
       { root: null, rootMargin: '0px', threshold: 0.3 },
     );
 
-    SECTIONS.forEach((section) => {
+    sections.forEach((section) => {
       const el = document.getElementById(section.id);
       if (el) observer.observe(el);
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [sections]);
 
   return (
     <main
@@ -100,7 +124,7 @@ export default function ApplicationDetailPage() {
           {/* Left Sidebar Navigation */}
           <aside className="hidden lg:block">
             <div className="sticky top-24 space-y-2">
-              {SECTIONS.map((section) => (
+              {sections.map((section) => (
                 <button
                   key={section.id}
                   onClick={() => scrollToSection(section.id)}

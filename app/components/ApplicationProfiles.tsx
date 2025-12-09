@@ -134,45 +134,53 @@ export default function ApplicationProfiles() {
               href={`/dashboard/applications/${profile.id}`}
               className="block"
             >
-              <article className="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-shadow transition-transform duration-200 hover:-translate-y-1 p-5 md:p-6 cursor-pointer h-full">
+              <article className="bg-gradient-to-br from-indigo-50 via-white to-sky-50 border border-indigo-100 rounded-2xl shadow-md hover:shadow-xl transition-all duration-200 hover:-translate-y-1 p-5 md:p-6 cursor-pointer h-full">
                 <header className="mb-3">
                   <h2 className="text-xl md:text-2xl font-semibold text-gray-900 hover:text-indigo-600 transition-colors">
                     {profile.title}
                   </h2>
-                  <p className="text-sm text-gray-600">
-                    Major:{' '}
-                    <span className="text-indigo-600 font-semibold">
-                      {profile.intendedMajor}
-                    </span>
-                  </p>
-                  <p className="text-sm text-gray-700 mt-1">
-                    <span className="font-semibold text-gray-900">
-                      {profile.highSchool || '—'}
-                    </span>
-                    {' • '}
-                    <span className="font-semibold text-gray-900">
-                      {profile.location}
-                    </span>
-                  </p>
-                  {attending && (
-                    <p className="text-sm text-emerald-700 font-semibold mt-1">
-                      Final choice: {attending}
+                  <div className="text-sm text-gray-700 mt-1 space-y-1">
+                    <p>
+                      <span className="font-semibold text-gray-900">Major: </span>
+                      <span className="text-indigo-700 font-semibold">{profile.intendedMajor}</span>
                     </p>
-                  )}
+                    <p>
+                      <span className="font-semibold text-gray-900">School: </span>
+                      <span className="text-gray-900">{profile.highSchool || '—'}</span>
+                    </p>
+                    <p>
+                      <span className="font-semibold text-gray-900">City: </span>
+                      <span className="text-gray-900">{profile.location}</span>
+                    </p>
+                    <p>
+                      <span className="font-semibold text-gray-900">Gender: </span>
+                      <span className="text-gray-900">{profile.gender}</span>
+                    </p>
+                    {attending && (
+                      <p className="text-sm text-emerald-700 font-semibold">
+                        Final choice: {attending}
+                      </p>
+                    )}
+                  </div>
                 </header>
 
                 <div className="flex flex-wrap gap-2 mb-4">
                   {profile.highSchool && (
-                    <span className="px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-medium">
+                    <span className="px-3 py-1 rounded-full bg-indigo-100 text-indigo-800 text-xs font-semibold">
                       {profile.highSchool}
                     </span>
                   )}
-                  <span className="px-3 py-1 rounded-full bg-sky-50 text-sky-700 text-xs font-medium">
+                  <span className="px-3 py-1 rounded-full bg-sky-100 text-sky-800 text-xs font-semibold">
                     {profile.location}
                   </span>
-                  <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-medium">
+                  <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-semibold">
                     {profile.gender}
                   </span>
+                  {profile.conditions && (
+                    <span className="px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-semibold">
+                      {profile.conditions}
+                    </span>
+                  )}
                 </div>
 
                 <div className="grid md:grid-cols-[2fr,1.3fr] gap-4 items-start">
@@ -180,7 +188,7 @@ export default function ApplicationProfiles() {
                     {profile.extracurriculars[0]?.description || profile.extracurriculars[0]?.title || 'Strong extracurricular profile'}
                   </p>
 
-                  <div className="bg-indigo-50 rounded-xl p-3 grid grid-cols-2 gap-3 text-xs md:text-sm text-gray-800">
+                  <div className="bg-white/90 border border-indigo-100 rounded-xl p-3 grid grid-cols-2 gap-3 text-xs md:text-sm text-gray-800">
                     <div>
                       <div className="font-semibold text-gray-700">GPA</div>
                       <div className="text-lg font-bold">
@@ -188,6 +196,12 @@ export default function ApplicationProfiles() {
                           ? profile.gpa.toFixed(2)
                           : profile.gpa.toFixed(0)}
                       </div>
+                    {profile.ieltsScore && (
+                      <div>
+                        <div className="font-semibold text-gray-700">IELTS</div>
+                        <div className="text-lg font-bold">{profile.ieltsScore}</div>
+                      </div>
+                    )}
                     </div>
                     {profile.satScore && (
                       <div>
