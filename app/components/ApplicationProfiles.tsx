@@ -96,81 +96,82 @@ export default function ApplicationProfiles() {
 
       <div className="space-y-5">
         {filtered.map((profile) => (
-          <article
+          <Link
             key={profile.id}
-            className="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-shadow transition-transform duration-200 hover:-translate-y-1 p-5 md:p-6 cursor-pointer"
+            href={`/dashboard/applications/${profile.id}`}
+            className="block"
           >
-            <header className="mb-3">
-              <Link href={`/dashboard/applications/${profile.id}`}>
+            <article className="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-shadow transition-transform duration-200 hover:-translate-y-1 p-5 md:p-6 cursor-pointer">
+              <header className="mb-3">
                 <h2 className="text-xl md:text-2xl font-semibold text-gray-900 hover:text-indigo-600 transition-colors">
                   {profile.title}
                 </h2>
-              </Link>
-              <p className="text-sm text-gray-600">
-                Intended Major:{' '}
-                <span className="text-indigo-600 font-medium">
-                  {profile.intendedMajor}
-                </span>
-              </p>
-            </header>
-
-            <div className="flex flex-wrap gap-2 mb-4">
-              <span className="px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-medium">
-                {profile.schoolType} School
-              </span>
-              <span className="px-3 py-1 rounded-full bg-sky-50 text-sky-700 text-xs font-medium">
-                {profile.location}
-              </span>
-              <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-medium">
-                {profile.gender}
-              </span>
-              {profile.collegeDecisions
-                .filter((d) => d.attending)
-                .map((d) => (
-                  <span
-                    key={d.school}
-                    className="px-3 py-1 rounded-full bg-purple-50 text-purple-700 text-xs font-medium"
-                  >
-                    {d.school.split('(')[0].trim()}
+                <p className="text-sm text-gray-600">
+                  Intended Major:{' '}
+                  <span className="text-indigo-600 font-medium">
+                    {profile.intendedMajor}
                   </span>
-                ))}
-            </div>
+                </p>
+              </header>
 
-            <div className="grid md:grid-cols-[2fr,1.3fr] gap-4 items-start">
-              <p className="text-sm text-gray-700 leading-relaxed">
-                {profile.extracurriculars[0]?.description || profile.extracurriculars[0]?.title || 'Strong extracurricular profile'}
-              </p>
-
-              <div className="bg-indigo-50 rounded-xl p-3 grid grid-cols-2 gap-3 text-xs md:text-sm text-gray-800">
-                <div>
-                  <div className="font-semibold text-gray-700">GPA</div>
-                  <div className="text-lg font-bold">
-                    {profile.gpaType === 'unweighted' && profile.gpa <= 4.0
-                      ? profile.gpa.toFixed(2)
-                      : profile.gpa.toFixed(0)}
-                  </div>
-                </div>
-                {profile.satScore && (
-                  <div>
-                    <div className="font-semibold text-gray-700">SAT</div>
-                    <div className="text-lg font-bold">{profile.satScore}</div>
-                  </div>
-                )}
-                {profile.apScores && profile.apScores.length > 0 && (
-                  <div>
-                    <div className="font-semibold text-gray-700">AP Exams</div>
-                    <div className="text-lg font-bold">{profile.apScores.length}</div>
-                  </div>
-                )}
-                {profile.ibScores && profile.ibScores.length > 0 && (
-                  <div>
-                    <div className="font-semibold text-gray-700">IB Exams</div>
-                    <div className="text-lg font-bold">{profile.ibScores.length}</div>
-                  </div>
-                )}
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-medium">
+                  {profile.schoolType} School
+                </span>
+                <span className="px-3 py-1 rounded-full bg-sky-50 text-sky-700 text-xs font-medium">
+                  {profile.location}
+                </span>
+                <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-medium">
+                  {profile.gender}
+                </span>
+                {profile.collegeDecisions
+                  .filter((d) => d.attending)
+                  .map((d) => (
+                    <span
+                      key={d.school}
+                      className="px-3 py-1 rounded-full bg-purple-50 text-purple-700 text-xs font-medium"
+                    >
+                      {d.school.split('(')[0].trim()}
+                    </span>
+                  ))}
               </div>
-            </div>
-          </article>
+
+              <div className="grid md:grid-cols-[2fr,1.3fr] gap-4 items-start">
+                <p className="text-sm text-gray-700 leading-relaxed">
+                  {profile.extracurriculars[0]?.description || profile.extracurriculars[0]?.title || 'Strong extracurricular profile'}
+                </p>
+
+                <div className="bg-indigo-50 rounded-xl p-3 grid grid-cols-2 gap-3 text-xs md:text-sm text-gray-800">
+                  <div>
+                    <div className="font-semibold text-gray-700">GPA</div>
+                    <div className="text-lg font-bold">
+                      {profile.gpaType === 'unweighted' && profile.gpa <= 4.0
+                        ? profile.gpa.toFixed(2)
+                        : profile.gpa.toFixed(0)}
+                    </div>
+                  </div>
+                  {profile.satScore && (
+                    <div>
+                      <div className="font-semibold text-gray-700">SAT</div>
+                      <div className="text-lg font-bold">{profile.satScore}</div>
+                    </div>
+                  )}
+                  {profile.apScores && profile.apScores.length > 0 && (
+                    <div>
+                      <div className="font-semibold text-gray-700">AP Exams</div>
+                      <div className="text-lg font-bold">{profile.apScores.length}</div>
+                    </div>
+                  )}
+                  {profile.ibScores && profile.ibScores.length > 0 && (
+                    <div>
+                      <div className="font-semibold text-gray-700">IB Exams</div>
+                      <div className="text-lg font-bold">{profile.ibScores.length}</div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </article>
+          </Link>
         ))}
 
         {filtered.length === 0 && (
