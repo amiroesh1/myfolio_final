@@ -124,85 +124,95 @@ export default function ApplicationProfiles() {
         Showing {filtered.length} application profiles
       </p>
 
-      <div className="space-y-5">
-        {filtered.map((profile) => (
-          <Link
-            key={profile.id}
-            href={`/dashboard/applications/${profile.id}`}
-            className="block"
-          >
-            <article className="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-shadow transition-transform duration-200 hover:-translate-y-1 p-5 md:p-6 cursor-pointer">
-              <header className="mb-3">
-                <h2 className="text-xl md:text-2xl font-semibold text-gray-900 hover:text-indigo-600 transition-colors">
-                  {profile.title}
-                </h2>
-                <p className="text-sm text-gray-600">
-                  Intended Major:{' '}
-                  <span className="text-indigo-600 font-medium">
-                    {profile.intendedMajor}
-                  </span>
-                </p>
-              </header>
+      <div className="grid gap-5 md:grid-cols-2">
+        {filtered.map((profile) => {
+          const attending = profile.collegeDecisions.find((d) => d.attending)?.school;
 
-              <div className="flex flex-wrap gap-2 mb-4">
-                <span className="px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-medium">
-                  {profile.schoolType} School
-                </span>
-                <span className="px-3 py-1 rounded-full bg-sky-50 text-sky-700 text-xs font-medium">
-                  {profile.location}
-                </span>
-                <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-medium">
-                  {profile.gender}
-                </span>
-                {profile.collegeDecisions
-                  .filter((d) => d.attending)
-                  .map((d) => (
-                    <span
-                      key={d.school}
-                      className="px-3 py-1 rounded-full bg-purple-50 text-purple-700 text-xs font-medium"
-                    >
-                      {d.school.split('(')[0].trim()}
+          return (
+            <Link
+              key={profile.id}
+              href={`/dashboard/applications/${profile.id}`}
+              className="block"
+            >
+              <article className="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-shadow transition-transform duration-200 hover:-translate-y-1 p-5 md:p-6 cursor-pointer h-full">
+                <header className="mb-3">
+                  <h2 className="text-xl md:text-2xl font-semibold text-gray-900 hover:text-indigo-600 transition-colors">
+                    {profile.title}
+                  </h2>
+                  <p className="text-sm text-gray-600">
+                    Major:{' '}
+                    <span className="text-indigo-600 font-semibold">
+                      {profile.intendedMajor}
                     </span>
-                  ))}
-              </div>
+                  </p>
+                  <p className="text-sm text-gray-700 mt-1">
+                    <span className="font-semibold text-gray-900">
+                      {profile.highSchool || '—'}
+                    </span>
+                    {' • '}
+                    <span className="font-semibold text-gray-900">
+                      {profile.location}
+                    </span>
+                  </p>
+                  {attending && (
+                    <p className="text-sm text-emerald-700 font-semibold mt-1">
+                      Final choice: {attending}
+                    </p>
+                  )}
+                </header>
 
-              <div className="grid md:grid-cols-[2fr,1.3fr] gap-4 items-start">
-                <p className="text-sm text-gray-700 leading-relaxed">
-                  {profile.extracurriculars[0]?.description || profile.extracurriculars[0]?.title || 'Strong extracurricular profile'}
-                </p>
-
-                <div className="bg-indigo-50 rounded-xl p-3 grid grid-cols-2 gap-3 text-xs md:text-sm text-gray-800">
-                  <div>
-                    <div className="font-semibold text-gray-700">GPA</div>
-                    <div className="text-lg font-bold">
-                      {profile.gpaType === 'unweighted' && profile.gpa <= 4.0
-                        ? profile.gpa.toFixed(2)
-                        : profile.gpa.toFixed(0)}
-                    </div>
-                  </div>
-                  {profile.satScore && (
-                    <div>
-                      <div className="font-semibold text-gray-700">SAT</div>
-                      <div className="text-lg font-bold">{profile.satScore}</div>
-                    </div>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {profile.highSchool && (
+                    <span className="px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-medium">
+                      {profile.highSchool}
+                    </span>
                   )}
-                  {profile.apScores && profile.apScores.length > 0 && (
-                    <div>
-                      <div className="font-semibold text-gray-700">AP Exams</div>
-                      <div className="text-lg font-bold">{profile.apScores.length}</div>
-                    </div>
-                  )}
-                  {profile.ibScores && profile.ibScores.length > 0 && (
-                    <div>
-                      <div className="font-semibold text-gray-700">IB Exams</div>
-                      <div className="text-lg font-bold">{profile.ibScores.length}</div>
-                    </div>
-                  )}
+                  <span className="px-3 py-1 rounded-full bg-sky-50 text-sky-700 text-xs font-medium">
+                    {profile.location}
+                  </span>
+                  <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-medium">
+                    {profile.gender}
+                  </span>
                 </div>
-              </div>
-            </article>
-          </Link>
-        ))}
+
+                <div className="grid md:grid-cols-[2fr,1.3fr] gap-4 items-start">
+                  <p className="text-sm text-gray-700 leading-relaxed">
+                    {profile.extracurriculars[0]?.description || profile.extracurriculars[0]?.title || 'Strong extracurricular profile'}
+                  </p>
+
+                  <div className="bg-indigo-50 rounded-xl p-3 grid grid-cols-2 gap-3 text-xs md:text-sm text-gray-800">
+                    <div>
+                      <div className="font-semibold text-gray-700">GPA</div>
+                      <div className="text-lg font-bold">
+                        {profile.gpaType === 'unweighted' && profile.gpa <= 4.0
+                          ? profile.gpa.toFixed(2)
+                          : profile.gpa.toFixed(0)}
+                      </div>
+                    </div>
+                    {profile.satScore && (
+                      <div>
+                        <div className="font-semibold text-gray-700">SAT</div>
+                        <div className="text-lg font-bold">{profile.satScore}</div>
+                      </div>
+                    )}
+                    {profile.apScores && profile.apScores.length > 0 && (
+                      <div>
+                        <div className="font-semibold text-gray-700">AP Exams</div>
+                        <div className="text-lg font-bold">{profile.apScores.length}</div>
+                      </div>
+                    )}
+                    {profile.ibScores && profile.ibScores.length > 0 && (
+                      <div>
+                        <div className="font-semibold text-gray-700">IB Exams</div>
+                        <div className="text-lg font-bold">{profile.ibScores.length}</div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </article>
+            </Link>
+          );
+        })}
 
         {filtered.length === 0 && (
           <p className="text-sm text-gray-500">

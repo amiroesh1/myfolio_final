@@ -163,9 +163,9 @@ export default function ApplicationDetailPage() {
                   </div>
                 )}
                 <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-xl p-4 transition-transform duration-200 hover:-translate-y-1 hover:shadow-md">
-                  <div className="text-xs text-gray-600 mb-1">Type of School</div>
+                  <div className="text-xs text-gray-600 mb-1">High School</div>
                   <div className="text-lg font-semibold text-gray-900">
-                    {profile.schoolType}
+                    {profile.highSchool || profile.schoolType}
                   </div>
                 </div>
                 <div className="bg-gradient-to-br from-pink-50 to-pink-100 rounded-xl p-4 transition-transform duration-200 hover:-translate-y-1 hover:shadow-md">
