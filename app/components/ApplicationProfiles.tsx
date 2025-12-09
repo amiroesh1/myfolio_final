@@ -11,12 +11,14 @@ export default function ApplicationProfiles() {
   const [schoolType, setSchoolType] = useState<string>('All');
   const [major, setMajor] = useState<string>('All');
   const [scoreRange, setScoreRange] = useState<string>('All');
+  const [search, setSearch] = useState<string>('');
 
   const majors = Array.from(
     new Set(APPLICATION_PROFILES.map((p) => p.intendedMajor)),
   ).sort();
 
   const filtered = useMemo(() => {
+    const q = search.toLowerCase().trim();
     return APPLICATION_PROFILES.filter((p) => {
       const matchesSchool =
         schoolType === 'All' || p.schoolType === schoolType;
@@ -33,14 +35,42 @@ export default function ApplicationProfiles() {
         }
       }
 
-      return matchesSchool && matchesMajor && matchesScore;
+      const haystack = [
+        p.title,
+        p.fullName,
+        p.intendedMajor,
+        p.location,
+        p.highSchool,
+        p.program,
+        p.submission,
+        p.conditions,
+        p.extracurriculars.map((e) => e.title).join(' '),
+        p.awards.join(' '),
+      ]
+        .join(' ')
+        .toLowerCase();
+
+      const matchesSearch = q ? haystack.includes(q) : true;
+
+      return matchesSchool && matchesMajor && matchesScore && matchesSearch;
     });
-  }, [schoolType, major, scoreRange]);
+  }, [schoolType, major, scoreRange, search]);
 
   return (
     <div className="space-y-6">
       {/* Filters bar */}
       <div className="bg-white/80 rounded-2xl shadow-sm p-4 md:p-5 flex flex-col md:flex-row gap-3 md:gap-4 items-stretch md:items-center">
+        <div className="flex-1 min-w-[200px]">
+          <label className="block text-xs font-medium text-gray-600 mb-1">
+            Search
+          </label>
+          <input
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Name, major, location, award..."
+            className="w-full border rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          />
+        </div>
         <div className="flex-1 min-w-[140px]">
           <label className="block text-xs font-medium text-gray-600 mb-1">
             Filter by School Type

@@ -2,7 +2,7 @@
 
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { APPLICATION_PROFILES } from '../../../components/applicationData';
 
 const SECTIONS = [
@@ -44,6 +44,26 @@ export default function ApplicationDetailPage() {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { root: null, rootMargin: '0px', threshold: 0.3 },
+    );
+
+    SECTIONS.forEach((section) => {
+      const el = document.getElementById(section.id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <main
@@ -126,6 +146,14 @@ export default function ApplicationDetailPage() {
                     {profile.location}
                   </div>
                 </div>
+                {profile.highSchool && (
+                  <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-xl p-4 transition-transform duration-200 hover:-translate-y-1 hover:shadow-md">
+                    <div className="text-xs text-gray-600 mb-1">High School</div>
+                    <div className="text-lg font-semibold text-gray-900">
+                      {profile.highSchool}
+                    </div>
+                  </div>
+                )}
                 {profile.incomeBracket && (
                   <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-xl p-4 transition-transform duration-200 hover:-translate-y-1 hover:shadow-md">
                     <div className="text-xs text-gray-600 mb-1">Income Bracket</div>
@@ -152,6 +180,22 @@ export default function ApplicationDetailPage() {
                     {profile.intendedMajor}
                   </div>
                 </div>
+                {profile.program && (
+                  <div className="bg-gradient-to-br from-blue-50 to-purple-100 rounded-xl p-4 col-span-2 md:col-span-3 transition-transform duration-200 hover:-translate-y-1 hover:shadow-md">
+                    <div className="text-xs text-gray-600 mb-1">Program</div>
+                    <div className="text-lg font-semibold text-gray-900">
+                      {profile.program}
+                    </div>
+                  </div>
+                )}
+                {(profile.submission || profile.conditions) && (
+                  <div className="bg-gradient-to-br from-green-50 to-blue-100 rounded-xl p-4 col-span-2 md:col-span-3 transition-transform duration-200 hover:-translate-y-1 hover:shadow-md">
+                    <div className="text-xs text-gray-600 mb-1">Admission / Offer</div>
+                    <div className="text-lg font-semibold text-gray-900">
+                      {[profile.submission, profile.conditions].filter(Boolean).join(' • ')}
+                    </div>
+                  </div>
+                )}
               </div>
             </section>
 
@@ -201,6 +245,22 @@ export default function ApplicationDetailPage() {
                     {profile.satMath && profile.satReading && (
                       <div className="text-xs text-gray-600 mt-1">
                         M:{profile.satMath} R:{profile.satReading}
+                      </div>
+                    )}
+                  </div>
+                )}
+                {profile.ieltsScore && (
+                  <div className="bg-white rounded-xl p-4 shadow-sm text-center transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg">
+                    <div className="text-xs text-gray-500 mb-1">IELTS</div>
+                    <div className="text-3xl font-bold text-gray-900">
+                      {profile.ieltsScore}
+                    </div>
+                    {(profile.ieltsReading ||
+                      profile.ieltsListening ||
+                      profile.ieltsSpeaking ||
+                      profile.ieltsWriting) && (
+                      <div className="text-xs text-gray-600 mt-1">
+                        R:{profile.ieltsReading ?? '-'} L:{profile.ieltsListening ?? '-'} S:{profile.ieltsSpeaking ?? '-'} W:{profile.ieltsWriting ?? '-'}
                       </div>
                     )}
                   </div>

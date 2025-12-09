@@ -21,6 +21,10 @@ export type ApplicationProfile = {
   id: string;
   fullName: string;
   title: string;
+  highSchool?: string;
+  program?: string;
+  submission?: string;
+  conditions?: string;
   intendedMajor: string;
   schoolType: 'Public' | 'Private' | 'International';
   gender: string;
@@ -33,6 +37,11 @@ export type ApplicationProfile = {
   satScore?: number;
   satMath?: number;
   satReading?: number;
+  ieltsScore?: number;
+  ieltsReading?: number;
+  ieltsListening?: number;
+  ieltsSpeaking?: number;
+  ieltsWriting?: number;
   actScore?: number;
   apScores?: APScore[];
   ibScores?: APScore[];
@@ -136,6 +145,228 @@ export const APPLICATION_PROFILES: ApplicationProfile[] = [
       role: 'Computer Science Teacher & Research Mentor',
       content:
         `To the Admissions Committee,\n\nI am thrilled to recommend Daniel Kim for admission to your Computer Science program. I have known Daniel for three years as his Computer Science teacher and as his research mentor in the Transportation & Machine Learning Lab at the University of Washington. In both the classroom and in the lab, Daniel demonstrates a rare combination of intellectual depth, practical engineering skill, and humility.\n\nAcademically, Daniel is at the very top of his cohort. He mastered discrete algorithms and complexity in my Advanced Algorithms course and applied those skills directly to his TransitVision AI project. Notably, he developed a hybrid model that combined time-series LSTMs with Transformer-based feature encoders to model multimodal transit data — and then optimized inference latency to run on low-end mobile devices. The result was an application that was both academically rigorous and immediately useful to the public.\n\nWhat sets Daniel apart is his product sense and leadership. He led a team of four students, coordinated with city transit officials to validate data, and navigated privacy concerns responsibly. During the prototyping phase he rewrote the inference pipeline three times to balance accuracy and latency; that kind of engineering judgment is rare in a high-school student.\n\nHe also communicates clearly: he wrote a whitepaper describing his methodology and presented it at our regional science fair, where he won the Grand Prize. Daniel treats feedback like fuel — he iteratively improves and brings others along. His teammates and younger students consistently cite him as a mentor and source of inspiration.\n\nIn short, Daniel will thrive in a program that values both theoretical rigor and practical impact. I strongly endorse his application and believe he will be an exceptional contributor to your community.\n\nSincerely,\n\nMr. Jason Whitman\nComputer Science Teacher & Research Mentor`,
+    },
+  },
+  {
+    id: 'sezim-bekova-nyuad',
+    fullName: 'Sezim Bekova',
+    title: 'Scholarship to NYU Abu Dhabi',
+    highSchool: 'Educational Complex school-gymnasium #70 (2024)',
+    program: 'Business',
+    submission: 'Regular admission',
+    conditions: 'Scholarship - $80,750/year',
+    intendedMajor: 'Business',
+    schoolType: 'International',
+    gender: 'Female',
+    ethnicity: 'Kyrgyz',
+    location: 'Bishkek, Kyrgyzstan / Abu Dhabi, UAE',
+    gpa: 5,
+    gpaType: 'unweighted',
+    satScore: 1550,
+    satMath: 790,
+    satReading: 760,
+    ieltsScore: 7.5,
+    ieltsReading: 9,
+    ieltsListening: 7.5,
+    ieltsSpeaking: 7,
+    ieltsWriting: 7,
+    extracurriculars: [
+      {
+        title: 'Global Scholar — AFS x UPenn Global STEM Accelerators',
+        description: 'Designed AI app “Recyclable” for waste sorting; presented to UPenn CSIS committee.',
+        years: '1 year',
+        rank: 1,
+      },
+      {
+        title: 'Team Lead — The Junior Academy (NYAS)',
+        description: 'Built AI tools for cognitive classrooms; led meetings, milestones, research summary.',
+        years: '1 year',
+        rank: 2,
+      },
+      {
+        title: 'Administrative Assistant — Hotel Bishkek',
+        description: 'Daily reports, sales efficiency strategy, improved team workflows.',
+        years: '1 year',
+        rank: 3,
+      },
+      {
+        title: 'Intern — Nobel Global Navigators',
+        description: 'Facilitator to coach; supported Intro to Web Design, TS, Leadership cohorts.',
+        years: '1 year',
+      },
+    ],
+    awards: [
+      'Diploma with honors and Altyn Tamga (top 150 of 50,000 graduates)',
+      'Winner of “Immersion Business Management Essay Contest”',
+    ],
+    collegeDecisions: [
+      { school: 'New York University Abu Dhabi', result: 'Admitted', decisionType: 'Regular Decision', attending: true },
+      { school: 'Carnegie Mellon University in Qatar', result: 'Admitted', decisionType: 'Regular Decision' },
+    ],
+    recommendationLetter: {
+      author: 'Teacher',
+      role: 'Business Teacher',
+      content: 'Highlights leadership in STEM innovation, essays, and consistent scholarship performance.',
+    },
+  },
+  {
+    id: 'tomiris-kushekenova-hkust',
+    fullName: 'Tomiris Kushekenova',
+    title: 'Full tuition + housing at HKUST (Information Systems)',
+    highSchool: 'NIS CBD Atyrau (2024)',
+    program: 'Information Systems',
+    submission: 'Regular admission',
+    conditions: 'Full tuition and housing',
+    intendedMajor: 'Information Systems',
+    schoolType: 'International',
+    gender: 'Female',
+    ethnicity: 'Kazakh',
+    location: 'Atyrau, Kazakhstan / Hong Kong',
+    gpa: 4.97,
+    gpaType: 'unweighted',
+    ieltsScore: 8,
+    ieltsReading: 8.5,
+    ieltsListening: 8.5,
+    ieltsSpeaking: 7.5,
+    ieltsWriting: 6.5,
+    extracurriculars: [
+      {
+        title: 'Local Representative — NIS Valley',
+        description: 'Built ties with Astana Hub; promoted IT opportunities to students.',
+        years: '1 year',
+        rank: 1,
+      },
+      {
+        title: 'Founder — “Speak It Easy” English Club',
+        description: '60+ students; interactive discussions and language practice.',
+        years: '2 years',
+        rank: 2,
+      },
+      {
+        title: 'Minister of Education — NIS Atyrau Student Council',
+        description: 'Workshops/events for 720 students on educational opportunities.',
+        years: '1 year',
+        rank: 3,
+      },
+      {
+        title: 'Volunteer — Univero IT department',
+        description: 'Helped fill university profiles (200+ institutions) on website.',
+        years: '1 year',
+      },
+      {
+        title: 'Assistant — Gas Stations IT department',
+        description: 'Supported 1C program operations for fuel supply network.',
+        years: '1 year',
+      },
+      {
+        title: 'Scholar — Kode With Klossy',
+        description: 'Front-end/back-end engineering, built global educational tools demo.',
+        years: 'Summer',
+      },
+      {
+        title: 'Learner — Girls Who Code',
+        description: 'JavaScript, Game Design, tech career prep.',
+        years: '1 year',
+      },
+      {
+        title: 'Initiator — STEM competition',
+        description: 'Organized STEM competition (30 students); 2 projects won national awards.',
+        years: '1 year',
+      },
+      {
+        title: 'Photographer — NIS Press Club',
+        description: 'Photo exhibition 700+ visitors; national/local awards.',
+        years: '2 years',
+      },
+    ],
+    awards: [
+      '2nd place at International Science Projects Olympiad (Okyanus Colleges)',
+      'Selected to study at Miniboss International Business School (5 of 720)',
+    ],
+    collegeDecisions: [
+      { school: 'The Hong Kong University of Science and Technology', result: 'Admitted', decisionType: 'Regular Decision', attending: true },
+      { school: 'Bryn Mawr College', result: 'Admitted', decisionType: 'Regular Decision' },
+      { school: 'Drexel University', result: 'Admitted', decisionType: 'Regular Decision' },
+      { school: 'Fordham University', result: 'Admitted', decisionType: 'Regular Decision' },
+      { school: 'Corvinus University of Budapest', result: 'Admitted', decisionType: 'Regular Decision' },
+      { school: 'City University of Hong Kong', result: 'Admitted', decisionType: 'Regular Decision' },
+      { school: 'The University of Hong Kong', result: 'Admitted', decisionType: 'Regular Decision' },
+      { school: 'New York University', result: 'Waitlisted', decisionType: 'Regular Decision' },
+      { school: 'Mount Holyoke College', result: 'Denied', decisionType: 'Regular Decision' },
+      { school: 'Harvey Mudd College', result: 'Denied', decisionType: 'Regular Decision' },
+      { school: 'Smith College', result: 'Denied', decisionType: 'Regular Decision' },
+    ],
+    recommendationLetter: {
+      author: 'Counselor',
+      role: 'School Counselor',
+      content: 'Highlights leadership in education outreach, STEM competitions, and language programs.',
+    },
+  },
+  {
+    id: 'ailu-baimagambetova-ku',
+    fullName: 'Ailu Baimagambetova',
+    title: 'Full tuition + housing at KU Leuven',
+    highSchool: 'School gymnasium #9 (2021)',
+    program: 'Business Administration',
+    submission: 'Rolling admission',
+    conditions: 'Full tuition and housing',
+    intendedMajor: 'Business Administration',
+    schoolType: 'International',
+    gender: 'Female',
+    ethnicity: 'Kazakh',
+    location: 'Aktobe, Kazakhstan / Leuven, Belgium',
+    gpa: 4.8,
+    gpaType: 'unweighted',
+    ieltsScore: 7.5,
+    ieltsReading: 7.5,
+    ieltsListening: 8,
+    ieltsSpeaking: 7.5,
+    ieltsWriting: 7.5,
+    extracurriculars: [
+      {
+        title: 'Co-Founder, Head of Finance — Qazaq Society in Belgium',
+        description: 'Oversaw budgeting, risk management, and financial strategy.',
+        years: '2 years',
+        rank: 1,
+      },
+      {
+        title: 'Founder — 360 Degree Wear',
+        description: 'Managed business strategy, design, production, logistics, marketing.',
+        years: '2 years',
+        rank: 2,
+      },
+      {
+        title: 'English & Study Mentor — Online learning school',
+        description: 'Taught and coordinated; created 30 learning courses.',
+        years: '2 years',
+        rank: 3,
+      },
+      {
+        title: 'Marketing Manager — Local start-up',
+        description: 'SMM and brand building.',
+        years: '1 year',
+      },
+      {
+        title: 'Volunteer — Online learning school',
+        description: 'Supported operations and mentoring.',
+        years: '1 year',
+      },
+    ],
+    awards: [
+      'Merit Scholar - National - Diploma with honors',
+      'Gold Medalist - National - English language olympiad',
+    ],
+    collegeDecisions: [
+      { school: 'KU Leuven', result: 'Admitted', decisionType: 'Regular Decision', attending: true },
+      { school: 'Arizona State University', result: 'Admitted', decisionType: 'Regular Decision' },
+      { school: 'The Hague Pathway College', result: 'Admitted', decisionType: 'Regular Decision' },
+      { school: 'Maastricht University', result: 'Admitted', decisionType: 'Regular Decision' },
+      { school: 'University of Amsterdam', result: 'Admitted', decisionType: 'Regular Decision' },
+    ],
+    recommendationLetter: {
+      author: 'Teacher',
+      role: 'Business Teacher',
+      content: 'Highlights entrepreneurship, finance leadership, and academic excellence.',
     },
   },
   {
@@ -393,6 +624,10 @@ export const APPLICATION_PROFILES: ApplicationProfile[] = [
     id: 'asemai-kauas-nu',
     fullName: 'Asemai Kauas',
     title: 'Full-ride to Nazarbayev University (CS)',
+    highSchool: 'IT Lyceum (2023)',
+    program: 'Computer Science',
+    submission: 'Regular admission',
+    conditions: 'Full ride',
     intendedMajor: 'Computer Science',
     schoolType: 'International',
     gender: 'Female',
@@ -403,6 +638,11 @@ export const APPLICATION_PROFILES: ApplicationProfile[] = [
     satScore: 1470,
     satMath: 790,
     satReading: 690,
+    ieltsScore: 7.5,
+    ieltsReading: 8,
+    ieltsListening: 8.5,
+    ieltsSpeaking: 7,
+    ieltsWriting: 6.5,
     extracurriculars: [
       {
         title: 'CTO & Web Developer — Benelink',
@@ -448,6 +688,10 @@ export const APPLICATION_PROFILES: ApplicationProfile[] = [
     id: 'azat-samatuly-minerva',
     fullName: 'Azat Samatuly',
     title: 'Full tuition + housing to Minerva University',
+    highSchool: 'NIS PMD Astana (2024)',
+    program: 'Business and Social Sciences',
+    submission: 'Early action',
+    conditions: 'Full tuition and housing',
     intendedMajor: 'Business and Social Sciences',
     schoolType: 'International',
     gender: 'Male',
@@ -458,6 +702,11 @@ export const APPLICATION_PROFILES: ApplicationProfile[] = [
     satScore: 1500,
     satMath: 800,
     satReading: 700,
+    ieltsScore: 8,
+    ieltsReading: 8.5,
+    ieltsListening: 8.5,
+    ieltsSpeaking: 7,
+    ieltsWriting: 6.5,
     extracurriculars: [
       {
         title: 'Peer-educator & Media Manager — Y-PEER (UNFPA)',
@@ -503,6 +752,10 @@ export const APPLICATION_PROFILES: ApplicationProfile[] = [
     id: 'assylkhan-serikov-elte',
     fullName: 'Assylkhan Serikov',
     title: 'Full-ride to Eötvös Loránd University (Business Management)',
+    highSchool: 'BIL Shymkent',
+    program: 'Business Management',
+    submission: 'Regular admission',
+    conditions: 'Full ride',
     intendedMajor: 'Business Management',
     schoolType: 'International',
     gender: 'Male',
@@ -510,7 +763,11 @@ export const APPLICATION_PROFILES: ApplicationProfile[] = [
     location: 'Shymkent, Kazakhstan / Budapest, Hungary',
     gpa: 5,
     gpaType: 'unweighted',
-    satScore: undefined,
+    ieltsScore: 6.5,
+    ieltsReading: 6.5,
+    ieltsListening: 7.5,
+    ieltsSpeaking: 6,
+    ieltsWriting: 6,
     extracurriculars: [
       {
         title: 'SMM for multiple brands',
