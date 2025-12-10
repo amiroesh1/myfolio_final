@@ -61,15 +61,10 @@ export default function AiAnalyzerPage() {
               Загрузите PDF (резюме/портфолио) или вставьте текст. AI оценит профиль, выдаст сильные/слабые стороны,
               рейтинг и предложит программы. Приоритет — PDF, если оба поля заполнены.
             </p>
-            <div className="mt-3 text-xs md:text-sm text-white/80">
-              Токен OpenAI: добавьте в <span className="font-semibold">.env.local</span> переменную{' '}
-              <span className="font-semibold">OPENAI_API_KEY=your_key</span>
-            </div>
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-[1.1fr,0.9fr] gap-4">
-          <div className="bg-white/80 border border-slate-100 rounded-2xl shadow-lg p-6 space-y-4">
+        <div className="bg-white/80 border border-slate-100 rounded-2xl shadow-lg p-6 space-y-4">
           <div className="flex flex-col gap-2">
             <label className="text-sm font-medium text-slate-800">PDF (до 5MB)</label>
             <input
@@ -109,21 +104,6 @@ export default function AiAnalyzerPage() {
           >
             {loading ? 'Анализируем...' : 'Analyze Profile'}
           </button>
-        </div>
-
-          <div className="bg-white/70 border border-indigo-100 rounded-2xl shadow-lg p-6 space-y-3">
-            <h3 className="text-lg font-semibold text-slate-900">Как работает</h3>
-            <ul className="text-sm text-slate-700 space-y-2">
-              <li>1) Загружаем PDF или текст, приоритет — PDF.</li>
-              <li>2) Конвертируем в текст, проверяем длину (до 12k символов).</li>
-              <li>3) Передаём профиль + метаданные программ в OpenAI.</li>
-              <li>4) Возвращаем Summary, Strengths, Weaknesses, Actions, Score, Suggested Programs.</li>
-              <li>5) 3–8 программ, только из базы метаданных.</li>
-            </ul>
-            <div className="text-sm text-indigo-700 bg-indigo-50 border border-indigo-100 rounded-xl p-3">
-              Подсказка: чем конкретнее ваш опыт и интересы, тем точнее рекомендации.
-            </div>
-          </div>
         </div>
 
         {loading && (
@@ -198,6 +178,14 @@ export default function AiAnalyzerPage() {
                 <pre className="whitespace-pre-wrap">{result.raw}</pre>
               </div>
             )}
+            <div className="pt-2">
+              <a
+                href="/dashboard"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-600 text-white text-sm font-semibold hover:scale-[1.02] hover:shadow-md transition-all duration-200"
+              >
+                Задать вопросы в AI
+              </a>
+            </div>
           </div>
         )}
       </div>
