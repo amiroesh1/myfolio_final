@@ -9,7 +9,7 @@ export default function Blog() {
         {/* New Article */}
         <div className="max-w-2xl bg-white rounded-xl shadow-sm hover:shadow-md transition-all p-6 border border-gray-100">
           <div className="mb-4">
-            <span className="text-sm text-gray-500">May 2025</span>
+            <span className="text-sm text-gray-500">December 10, 2025</span>
           </div>
           
           <h2 className="text-2xl font-semibold text-[#1E293B] mb-3">
