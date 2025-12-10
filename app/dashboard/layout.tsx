@@ -45,7 +45,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   }
 
   return (
-    <main className="relative min-h-screen" style={{ background: 'linear-gradient(135deg, #fff7ed, #eef2ff)' }}>
+    <main
+      className="relative min-h-screen"
+      style={{ background: 'linear-gradient(120deg, #fff7ed 0%, #f4f7ff 40%, #eef2ff 100%)' }}
+    >
       <div className="transition-all duration-300">
         <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-16">
           <div className="max-w-7xl mx-auto">
@@ -70,13 +73,22 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             <div className="flex gap-4">
               {/* Sidebar */}
               <aside className="hidden lg:flex lg:w-80 flex-col gap-3 sticky top-6 self-start h-[calc(100vh-6rem)] bg-gradient-to-b from-orange-500 via-orange-400 to-orange-300 text-white rounded-2xl p-4 shadow-2xl">
+                <div className="flex items-center gap-3 px-3 py-2 rounded-xl bg-white/15 mb-2">
+                  <div className="h-10 w-10 rounded-xl bg-white text-orange-600 font-black flex items-center justify-center shadow-md">
+                    🎓
+                  </div>
+                  <div>
+                    <div className="text-sm uppercase tracking-wide text-white/90">MyFolio</div>
+                    <div className="text-base font-semibold">Dashboard</div>
+                  </div>
+                </div>
                 {NAV_ITEMS.map((item) => {
                   const active = pathname?.startsWith(item.href);
                   return (
                     <Link
                       key={item.href}
                       href={item.href}
-                      className={`w-full text-left px-4 py-3 rounded-xl transition-all duration-200 flex items-center gap-3 ${
+                      className={`w-full text-left px-4 py-3 rounded-xl transition-all duration-200 flex items-center gap-3 hover:translate-x-0.5 ${
                         active
                           ? 'bg-white text-orange-600 shadow-lg'
                           : 'bg-white/10 text-white hover:bg-white/20'
@@ -130,7 +142,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               </div>
 
               {/* Content */}
-              <div className="flex-1">{children}</div>
+              <div className="flex-1 transition-all duration-200">{children}</div>
             </div>
           </div>
         </div>
