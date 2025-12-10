@@ -67,9 +67,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               </Link>
             </div>
 
-            <div className="flex flex-col lg:flex-row gap-4">
+            <div className="flex gap-4">
               {/* Sidebar */}
-              <aside className="lg:w-72 flex lg:flex-col gap-2 sticky top-6 self-start bg-gradient-to-b from-orange-500 via-orange-400 to-orange-300 text-white rounded-2xl p-4 shadow-xl">
+              <aside className="hidden lg:flex lg:w-80 flex-col gap-3 sticky top-6 self-start h-[calc(100vh-6rem)] bg-gradient-to-b from-orange-500 via-orange-400 to-orange-300 text-white rounded-2xl p-4 shadow-2xl">
                 {NAV_ITEMS.map((item) => {
                   const active = pathname?.startsWith(item.href);
                   return (
@@ -88,6 +88,46 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   );
                 })}
               </aside>
+
+              {/* Mobile sidebar (top buttons) */}
+              <div className="flex lg:hidden flex-col gap-2">
+                <div className="grid grid-cols-2 gap-2">
+                  {NAV_ITEMS.slice(0, 4).map((item) => {
+                    const active = pathname?.startsWith(item.href);
+                    return (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className={`w-full text-left px-3 py-2 rounded-xl transition-all duration-200 flex items-center gap-2 ${
+                          active
+                            ? 'bg-orange-500 text-white shadow-md'
+                            : 'bg-white text-gray-700 shadow-sm'
+                        }`}
+                      >
+                        <span>{item.icon}</span>
+                        <span className="font-semibold text-sm">{item.label}</span>
+                      </Link>
+                    );
+                  })}
+                </div>
+                {NAV_ITEMS.slice(4).map((item) => {
+                  const active = pathname?.startsWith(item.href);
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={`w-full text-left px-3 py-2 rounded-xl transition-all duration-200 flex items-center gap-2 ${
+                        active
+                          ? 'bg-orange-500 text-white shadow-md'
+                          : 'bg-white text-gray-700 shadow-sm'
+                      }`}
+                    >
+                      <span>{item.icon}</span>
+                      <span className="font-semibold text-sm">{item.label}</span>
+                    </Link>
+                  );
+                })}
+              </div>
 
               {/* Content */}
               <div className="flex-1">{children}</div>
