@@ -104,7 +104,7 @@ export default function Home() {
                   AI Analyzer
                 </h3>
                 <p className="text-[#475569] text-base mb-4">
-                  Загрузите PDF или текст — AI оценит профиль, даст рейтинг, сильные/слабые стороны и подберёт программы.
+                  Upload a PDF or text — AI will rate the profile, highlight strengths/weaknesses, and suggest programs.
                 </p>
                 <div className="text-sm text-emerald-700 font-medium opacity-0 group-hover:opacity-100 transition-opacity">
                   Попробовать →

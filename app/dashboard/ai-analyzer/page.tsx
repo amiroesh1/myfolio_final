@@ -24,7 +24,7 @@ export default function AiAnalyzerPage() {
     setResult(null);
 
     if (!file && !text.trim()) {
-      setError('Добавьте PDF или введите текст.');
+      setError('Please upload a PDF or enter text.');
       return;
     }
 
@@ -40,11 +40,11 @@ export default function AiAnalyzerPage() {
       });
       const data = await res.json();
       if (!res.ok || !data?.ok) {
-        throw new Error(data?.error || 'Ошибка анализа');
+        throw new Error(data?.error || 'Analysis error');
       }
       setResult(data.result || data);
     } catch (e: any) {
-      setError(e.message || 'Ошибка запроса');
+      setError(e.message || 'Request failed');
     } finally {
       setLoading(false);
     }
@@ -58,15 +58,15 @@ export default function AiAnalyzerPage() {
           <div className="relative">
             <h1 className="text-3xl md:text-4xl font-bold mb-2">AI Analyzer</h1>
             <p className="text-sm md:text-base text-white/90 max-w-3xl">
-              Загрузите PDF (резюме/портфолио) или вставьте текст. AI оценит профиль, выдаст сильные/слабые стороны,
-              рейтинг и предложит программы. Приоритет — PDF, если оба поля заполнены.
+              Upload a PDF (resume/portfolio) or paste text. AI will score the profile, surface strengths/weaknesses,
+              and recommend programs. PDF is prioritized if both are provided.
             </p>
           </div>
         </div>
 
         <div className="bg-white/80 border border-slate-100 rounded-2xl shadow-lg p-6 space-y-4">
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-medium text-slate-800">PDF (до 5MB)</label>
+              <label className="text-sm font-medium text-slate-800">PDF (up to 5MB)</label>
             <input
               type="file"
               accept="application/pdf"
@@ -81,13 +81,13 @@ export default function AiAnalyzerPage() {
           </div>
 
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-medium text-slate-800">Текст (альтернатива PDF)</label>
+            <label className="text-sm font-medium text-slate-800">Text (alternative to PDF)</label>
             <textarea
               value={text}
               onChange={(e) => setText(e.target.value)}
               rows={6}
               className="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white"
-              placeholder="Кратко о себе: интересы, планы, достижения..."
+              placeholder="Briefly about you: interests, goals, achievements..."
             />
           </div>
 
@@ -102,7 +102,7 @@ export default function AiAnalyzerPage() {
             disabled={loading}
             className="inline-flex items-center justify-center px-4 py-3 rounded-lg bg-indigo-600 text-white text-sm font-semibold hover:scale-[1.02] hover:shadow-lg transition-all duration-200 disabled:opacity-60"
           >
-            {loading ? 'Анализируем...' : 'Analyze Profile'}
+            {loading ? 'Analyzing...' : 'Analyze Profile'}
           </button>
         </div>
 
@@ -183,7 +183,7 @@ export default function AiAnalyzerPage() {
                 href="/dashboard"
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-600 text-white text-sm font-semibold hover:scale-[1.02] hover:shadow-md transition-all duration-200"
               >
-                Задать вопросы в AI
+                Ask more questions in AI chat
               </a>
             </div>
           </div>
