@@ -3,7 +3,7 @@ import Link from 'next/link';
 export default function WhatsNewSpring2025() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-16 space-y-6">
-      <div className="text-sm text-gray-500">May 2025</div>
+      <div className="text-sm text-gray-500">December 10, 2025</div>
       <h1 className="text-3xl font-bold text-[#1E293B]">What’s New in MyFolio: AI Analyzer, Fresh UI, and Faster Search</h1>
       <p className="text-[#475569] leading-relaxed">
         We’ve shipped a wave of improvements to make building your portfolio smoother and more fun. Here’s a quick rundown of what changed.
