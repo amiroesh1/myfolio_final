@@ -95,7 +95,7 @@ export default function Home() {
 
               <Link 
                 href="/dashboard/ai-analyzer"
-                className="group bg-gradient-to-br from-sky-50 via-white to-emerald-50 p-8 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-2 border-transparent hover:border-emerald-400 cursor-pointer"
+                className="group bg-gradient-to-br from-sky-50 via-white to-emerald-50 p-6 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-2 border-transparent hover:border-emerald-400 cursor-pointer max-w-sm"
               >
                 <div className="text-emerald-600 mb-4 transform group-hover:scale-110 transition-transform duration-300">
                   <div className="h-10 w-10 rounded-xl bg-emerald-100 flex items-center justify-center text-xl">🤖</div>
@@ -103,11 +103,11 @@ export default function Home() {
                 <h3 className="text-xl font-semibold text-emerald-700 mb-3 group-hover:text-emerald-800 transition-colors">
                   AI Analyzer
                 </h3>
-                <p className="text-[#475569] text-base mb-4">
+                <p className="text-[#475569] text-base mb-4 leading-relaxed break-words">
                   Upload a PDF or text — AI will rate the profile, highlight strengths/weaknesses, and suggest programs.
                 </p>
                 <div className="text-sm text-emerald-700 font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                  Попробовать →
+                  Try it →
                 </div>
               </Link>
             </div>

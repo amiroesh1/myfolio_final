@@ -25,9 +25,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       router.replace('/dashboard/database');
     }
     // smooth transition on page change
-    setAnimStyle({ opacity: 0, transform: 'translateY(6px)' });
+    setAnimStyle({ opacity: 0, transform: 'translateY(6px) scale(0.985)' });
     const t = setTimeout(() => {
-      setAnimStyle({ opacity: 1, transform: 'translateY(0px)' });
+      setAnimStyle({ opacity: 1, transform: 'translateY(0px) scale(1)' });
     }, 10);
     return () => clearTimeout(t);
   }, [pathname, router]);
