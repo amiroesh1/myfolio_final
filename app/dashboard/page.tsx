@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useUser, SignIn } from '@clerk/nextjs';
 import ExtracurricularDatabase from '../components/ExtracurricularDatabase';
@@ -11,13 +11,14 @@ import DashboardStories from '../components/DashboardStories';
 export default function Dashboard() {
   const { isSignedIn } = useUser();
   const searchParams = useSearchParams();
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState<
-    'database' | 'applications' | 'stories' | 'submit'
+    'database' | 'applications' | 'stories' | 'submit' | 'ai'
   >('database');
 
   useEffect(() => {
     const tab = searchParams.get('tab');
-    if (tab && ['database', 'applications', 'stories', 'submit'].includes(tab)) {
+    if (tab && ['database', 'applications', 'stories', 'submit', 'ai'].includes(tab)) {
       setActiveTab(tab as typeof activeTab);
     }
   }, [searchParams]);
@@ -28,6 +29,9 @@ export default function Dashboard() {
         return <ApplicationProfiles />;
       case 'stories':
         return <DashboardStories />;
+      case 'ai':
+        router.push('/dashboard/ai-analyzer');
+        return null;
       case 'submit':
         return (
           <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-md p-6 sm:p-8 space-y-4">
@@ -118,50 +122,33 @@ export default function Dashboard() {
               </Link>
             </div>
 
-            {/* Dashboard tabs */}
-            <div className="flex flex-wrap justify-center gap-2 mb-8">
-              <button
-                onClick={() => setActiveTab('database')}
-                className={`px-4 py-2 rounded-full transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md ${
-                  activeTab === 'database'
-                    ? 'bg-indigo-600 text-white'
-                    : 'bg-white text-gray-700'
-                } shadow`}
-              >
-                Extracurricular Database
-              </button>
-              <button
-                onClick={() => setActiveTab('applications')}
-                className={`px-4 py-2 rounded-full transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md ${
-                  activeTab === 'applications'
-                    ? 'bg-indigo-600 text-white'
-                    : 'bg-white text-gray-700'
-                } shadow`}
-              >
-                Applications
-              </button>
-              <button
-                onClick={() => setActiveTab('stories')}
-                className={`px-4 py-2 rounded-full transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md ${
-                  activeTab === 'stories'
-                    ? 'bg-indigo-600 text-white'
-                    : 'bg-white text-gray-700'
-                } shadow`}
-              >
-                Stories
-              </button>
-              <button
-                onClick={() => setActiveTab('submit')}
-                className={`px-4 py-2 rounded-full transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md ${
-                  activeTab === 'submit'
-                    ? 'bg-indigo-600 text-white'
-                    : 'bg-white text-gray-700'
-                } shadow`}
-              >
-                Share Your Story
-              </button>
+            <div className="flex flex-col lg:flex-row gap-4">
+              <div className="lg:w-64 flex lg:flex-col gap-2">
+                {[
+                  { key: 'database', label: 'Extracurricular Database' },
+                  { key: 'applications', label: 'Applications' },
+                  { key: 'stories', label: 'Stories' },
+                  { key: 'submit', label: 'Share Your Story' },
+                  { key: 'ai', label: 'AI Analyzer' },
+                ].map((item) => (
+                  <button
+                    key={item.key}
+                    onClick={() => setActiveTab(item.key as typeof activeTab)}
+                    className={`w-full text-left px-4 py-2 rounded-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md ${
+                      activeTab === item.key
+                        ? 'bg-indigo-600 text-white shadow-lg'
+                        : 'bg-white text-gray-700 shadow'
+                    }`}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+
+              <div className="flex-1">
+                {renderActiveTab()}
+              </div>
             </div>
-            {renderActiveTab()}
           </div>
         </div>
       </div>

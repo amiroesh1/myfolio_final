@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { FaSearch, FaFilter } from 'react-icons/fa';
 
 interface Activity {
@@ -31,6 +31,7 @@ export default function ExtracurricularDatabase() {
     isHighlySelective: false
   });
   const [showFilters, setShowFilters] = useState(false);
+  const [resultCount, setResultCount] = useState(0);
 
   // Filter options
   const filterOptions = {
@@ -58,22 +59,30 @@ export default function ExtracurricularDatabase() {
     fetchActivities();
   }, []);
 
+  const normalizedSearch = useMemo(() => searchQuery.trim().toLowerCase(), [searchQuery]);
+
   // Filter activities when search query or filters change
   useEffect(() => {
     let result = activities;
 
-    // Apply search filter across all fields
-    if (searchQuery) {
-      const query = searchQuery.toLowerCase();
-      result = result.filter(activity => 
-        activity.title.toLowerCase().includes(query) ||
-        activity.description.toLowerCase().includes(query) ||
-        activity.category.toLowerCase().includes(query) ||
-        activity.type.toLowerCase().includes(query) ||
-        activity.interests.some(interest => interest.toLowerCase().includes(query)) ||
-        activity.location.toLowerCase().includes(query) ||
-        activity.financialRating.toLowerCase().includes(query)
-      );
+    // Apply search filter across multiple fields with token matching
+    if (normalizedSearch) {
+      const tokens = normalizedSearch.split(/\s+/).filter(Boolean);
+      result = result.filter((activity) => {
+        const haystack = [
+          activity.title,
+          activity.description,
+          activity.category,
+          activity.type,
+          activity.location,
+          activity.financialRating,
+          activity.interests.join(' '),
+          activity.period,
+        ]
+          .join(' ')
+          .toLowerCase();
+        return tokens.every((token) => haystack.includes(token));
+      });
     }
 
     // Apply type filter
@@ -89,7 +98,7 @@ export default function ExtracurricularDatabase() {
     // Apply format filter
     if (filters.format.length > 0) {
       result = result.filter(activity => {
-        const format = activity.location === 'Hybrid' ? 'Hybrid' : 
+        const format = activity.location === 'Hybrid' ? 'Hybrid' :
                       activity.isOnline ? 'Online' : 'In-Person';
         return filters.format.includes(format);
       });
@@ -99,17 +108,17 @@ export default function ExtracurricularDatabase() {
     if (filters.financialRating.length > 0) {
       result = result.filter(activity => {
         return filters.financialRating.some(rating => {
+          const fr = activity.financialRating.toLowerCase();
           if (rating === 'Financial Aid Available') {
-            return activity.financialRating.toLowerCase().includes('financial aid') ||
-                   activity.financialRating.toLowerCase().includes('scholarship');
+            return fr.includes('financial aid') || fr.includes('scholarship') || fr.includes('aid');
           }
           if (rating === 'Free') {
-            return activity.financialRating.toLowerCase().startsWith('free');
+            return fr.startsWith('free');
           }
           if (rating === 'Paid') {
-            return activity.financialRating.toLowerCase().startsWith('paid');
+            return fr.startsWith('paid');
           }
-          return activity.financialRating.toLowerCase().includes(rating.toLowerCase());
+          return fr.includes(rating.toLowerCase());
         });
       });
     }
@@ -125,7 +134,8 @@ export default function ExtracurricularDatabase() {
     }
 
     setFilteredActivities(result);
-  }, [searchQuery, filters, activities]);
+    setResultCount(result.length);
+  }, [normalizedSearch, filters, activities]);
 
   const toggleFilter = (type: keyof typeof filters, value: string) => {
     if (type === 'isHighlySelective') {
@@ -293,25 +303,28 @@ export default function ExtracurricularDatabase() {
               <input
                 type="text"
                 placeholder="   Search opportunities..."
-                className="w-full p-3 sm:p-4 pl-10 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-base"
+                className="w-full p-3 sm:p-4 pl-10 rounded-lg border border-blue-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-300 text-base shadow-sm"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
-              <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+              <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-400 h-4 w-4" />
+            </div>
+            <div className="mt-2 text-sm text-gray-600">
+              Найдено: <span className="font-semibold text-blue-700">{resultCount}</span>
             </div>
           </div>
 
           {/* Activities Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
             {filteredActivities.map((activity, index) => (
-            <div key={index} className="bg-white rounded-lg shadow-sm p-4 sm:p-6 hover:shadow-lg transition-shadow transition-transform duration-200 hover:-translate-y-1">
+            <div key={index} className="bg-gradient-to-br from-blue-50 via-white to-emerald-50 border border-blue-100 rounded-xl shadow-md p-4 sm:p-6 hover:shadow-xl transition-all duration-200 hover:-translate-y-1">
                 <div className="flex flex-col sm:flex-row justify-between items-start gap-2 sm:gap-4 mb-4">
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-1 line-clamp-2">{activity.title}</h3>
-                    <p className="text-sm text-gray-500 line-clamp-3">{activity.description}</p>
+                    <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-1">{activity.title}</h3>
+                    <p className="text-sm text-gray-600 leading-relaxed">{activity.description}</p>
                   </div>
                   {activity.isHighlySelective && (
-                    <span className="inline-flex items-center bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded whitespace-nowrap">
+                    <span className="inline-flex items-center bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full whitespace-nowrap shadow-sm">
                       Highly Selective
                     </span>
                   )}
