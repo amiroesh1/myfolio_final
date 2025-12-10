@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useUser, SignIn } from '@clerk/nextjs';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const NAV_ITEMS = [
   { href: '/dashboard/database', label: 'Extracurriculars', icon: '📚' },
@@ -17,12 +17,19 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const { isSignedIn } = useUser();
   const pathname = usePathname();
   const router = useRouter();
+  const [animStyle, setAnimStyle] = useState({ opacity: 1, transform: 'translateY(0px)' });
 
   useEffect(() => {
     // fallback redirect if user somehow lands on /dashboard without subpath
     if (pathname === '/dashboard') {
       router.replace('/dashboard/database');
     }
+    // smooth transition on page change
+    setAnimStyle({ opacity: 0, transform: 'translateY(6px)' });
+    const t = setTimeout(() => {
+      setAnimStyle({ opacity: 1, transform: 'translateY(0px)' });
+    }, 10);
+    return () => clearTimeout(t);
   }, [pathname, router]);
 
   if (!isSignedIn) {
@@ -50,8 +57,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       style={{ background: 'linear-gradient(120deg, #fff7ed 0%, #f4f7ff 40%, #eef2ff 100%)' }}
     >
       <div className="transition-all duration-300">
-        <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-16">
-          <div className="max-w-7xl mx-auto">
+        <div className="w-full px-0 py-8 sm:py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
             {/* Top bar */}
             <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 gap-4">
               <div>
@@ -142,7 +149,16 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               </div>
 
               {/* Content */}
-              <div className="flex-1 transition-all duration-200">{children}</div>
+              <div
+                key={pathname}
+                className="flex-1 transition-all duration-200"
+                style={{
+                  transition: 'opacity 220ms ease, transform 220ms ease',
+                  ...animStyle,
+                }}
+              >
+                {children}
+              </div>
             </div>
           </div>
         </div>
