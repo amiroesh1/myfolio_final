@@ -6,11 +6,11 @@ import { useUser, SignIn } from '@clerk/nextjs';
 import { useEffect } from 'react';
 
 const NAV_ITEMS = [
-  { href: '/dashboard/database', label: 'Extracurricular Database' },
-  { href: '/dashboard/applications', label: 'Applications' },
-  { href: '/dashboard/stories', label: 'Stories' },
-  { href: '/dashboard/submit', label: 'Share Your Story' },
-  { href: '/dashboard/ai-analyzer', label: 'AI Analyzer' },
+  { href: '/dashboard/database', label: 'Extracurriculars', icon: '📚' },
+  { href: '/dashboard/applications', label: 'Applications', icon: '🗂️' },
+  { href: '/dashboard/stories', label: 'Stories', icon: '📝' },
+  { href: '/dashboard/submit', label: 'Share Your Story', icon: '📣' },
+  { href: '/dashboard/ai-analyzer', label: 'AI Analyzer', icon: '🤖' },
 ];
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -45,13 +45,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   }
 
   return (
-    <main
-      className="relative min-h-screen"
-      style={{
-        background:
-          'linear-gradient(to right, rgb(235, 240, 255), rgb(233, 244, 255), rgb(230, 247, 252))',
-      }}
-    >
+    <main className="relative min-h-screen" style={{ background: 'linear-gradient(135deg, #fff7ed, #eef2ff)' }}>
       <div className="transition-all duration-300">
         <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-16">
           <div className="max-w-7xl mx-auto">
@@ -75,18 +69,21 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
             <div className="flex flex-col lg:flex-row gap-4">
               {/* Sidebar */}
-              <aside className="lg:w-64 flex lg:flex-col gap-2 sticky top-6 self-start">
+              <aside className="lg:w-72 flex lg:flex-col gap-2 sticky top-6 self-start bg-gradient-to-b from-orange-500 via-orange-400 to-orange-300 text-white rounded-2xl p-4 shadow-xl">
                 {NAV_ITEMS.map((item) => {
                   const active = pathname?.startsWith(item.href);
                   return (
                     <Link
                       key={item.href}
                       href={item.href}
-                      className={`w-full text-left px-4 py-2 rounded-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md ${
-                        active ? 'bg-indigo-600 text-white shadow-lg' : 'bg-white text-gray-700 shadow'
+                      className={`w-full text-left px-4 py-3 rounded-xl transition-all duration-200 flex items-center gap-3 ${
+                        active
+                          ? 'bg-white text-orange-600 shadow-lg'
+                          : 'bg-white/10 text-white hover:bg-white/20'
                       }`}
                     >
-                      {item.label}
+                      <span className="text-lg">{item.icon}</span>
+                      <span className="font-semibold">{item.label}</span>
                     </Link>
                   );
                 })}

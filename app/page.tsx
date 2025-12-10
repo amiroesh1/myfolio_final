@@ -38,9 +38,9 @@ export default function Home() {
           <section className="mb-16">
             <h2 className="text-2xl font-bold text-[#1E293B] mb-4">What We Offer</h2>
             <p className="text-[#64748B] mb-12">Explore our available features and discover opportunities to build your perfect college portfolio.</p>
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-4 gap-8">
               <Link 
-                href="/dashboard?tab=database"
+                href="/dashboard/database"
                 className="group bg-white p-8 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-2 border-transparent hover:border-[#4F46E5] cursor-pointer"
               >
                 <div className="text-[#4F46E5] mb-4 transform group-hover:scale-110 transition-transform duration-300">
@@ -58,7 +58,7 @@ export default function Home() {
               </Link>
 
               <Link 
-                href="/dashboard?tab=stories"
+                href="/dashboard/stories"
                 className="group bg-white p-8 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-2 border-transparent hover:border-[#4F46E5] cursor-pointer"
               >
                 <div className="text-[#4F46E5] mb-4 transform group-hover:scale-110 transition-transform duration-300">
@@ -76,7 +76,7 @@ export default function Home() {
               </Link>
 
               <Link 
-                href="/dashboard?tab=applications"
+                href="/dashboard/applications"
                 className="group bg-white p-8 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-2 border-transparent hover:border-[#4F46E5] cursor-pointer"
               >
                 <div className="text-[#4F46E5] mb-4 transform group-hover:scale-110 transition-transform duration-300">
@@ -90,6 +90,24 @@ export default function Home() {
                 </p>
                 <div className="text-sm text-[#4F46E5] font-medium opacity-0 group-hover:opacity-100 transition-opacity">
                   View profiles →
+                </div>
+              </Link>
+
+              <Link 
+                href="/dashboard/ai-analyzer"
+                className="group bg-gradient-to-br from-sky-50 via-white to-emerald-50 p-8 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-2 border-transparent hover:border-emerald-400 cursor-pointer"
+              >
+                <div className="text-emerald-600 mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                  <div className="h-10 w-10 rounded-xl bg-emerald-100 flex items-center justify-center text-xl">🤖</div>
+                </div>
+                <h3 className="text-xl font-semibold text-emerald-700 mb-3 group-hover:text-emerald-800 transition-colors">
+                  AI Analyzer
+                </h3>
+                <p className="text-[#475569] text-base mb-4">
+                  Загрузите PDF или текст — AI оценит профиль, даст рейтинг, сильные/слабые стороны и подберёт программы.
+                </p>
+                <div className="text-sm text-emerald-700 font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                  Попробовать →
                 </div>
               </Link>
             </div>

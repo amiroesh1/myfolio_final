@@ -51,16 +51,25 @@ export default function AiAnalyzerPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-      <div className="max-w-5xl mx-auto px-4 py-10 space-y-6">
-        <div className="bg-white/80 border border-slate-100 rounded-2xl shadow-sm p-6">
-          <h1 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">AI Analyzer</h1>
-          <p className="text-sm text-slate-600">
-            Загрузите PDF (резюме/портфолио) или вставьте текст. AI оценит профиль и подберёт программы.
-          </p>
+    <main className="min-h-screen bg-gradient-to-br from-sky-50 via-white to-emerald-50">
+      <div className="max-w-6xl mx-auto px-4 py-10 space-y-6">
+        <div className="relative overflow-hidden bg-gradient-to-r from-sky-500 via-indigo-500 to-emerald-500 rounded-2xl shadow-xl p-6 text-white">
+          <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_20%_20%,white,transparent_30%),radial-gradient(circle_at_80%_0%,white,transparent_25%),radial-gradient(circle_at_40%_60%,white,transparent_20%)]" />
+          <div className="relative">
+            <h1 className="text-3xl md:text-4xl font-bold mb-2">AI Analyzer</h1>
+            <p className="text-sm md:text-base text-white/90 max-w-3xl">
+              Загрузите PDF (резюме/портфолио) или вставьте текст. AI оценит профиль, выдаст сильные/слабые стороны,
+              рейтинг и предложит программы. Приоритет — PDF, если оба поля заполнены.
+            </p>
+            <div className="mt-3 text-xs md:text-sm text-white/80">
+              Токен OpenAI: добавьте в <span className="font-semibold">.env.local</span> переменную{' '}
+              <span className="font-semibold">OPENAI_API_KEY=your_key</span>
+            </div>
+          </div>
         </div>
 
-        <div className="bg-white/80 border border-slate-100 rounded-2xl shadow-sm p-6 space-y-4">
+        <div className="grid lg:grid-cols-[1.1fr,0.9fr] gap-4">
+          <div className="bg-white/80 border border-slate-100 rounded-2xl shadow-lg p-6 space-y-4">
           <div className="flex flex-col gap-2">
             <label className="text-sm font-medium text-slate-800">PDF (до 5MB)</label>
             <input
@@ -96,14 +105,38 @@ export default function AiAnalyzerPage() {
           <button
             onClick={onSubmit}
             disabled={loading}
-            className="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-700 transition disabled:opacity-60"
+            className="inline-flex items-center justify-center px-4 py-3 rounded-lg bg-indigo-600 text-white text-sm font-semibold hover:scale-[1.02] hover:shadow-lg transition-all duration-200 disabled:opacity-60"
           >
             {loading ? 'Анализируем...' : 'Analyze Profile'}
           </button>
         </div>
 
-        {result && (
-          <div className="bg-white/90 border border-slate-100 rounded-2xl shadow-sm p-6 space-y-4">
+          <div className="bg-white/70 border border-indigo-100 rounded-2xl shadow-lg p-6 space-y-3">
+            <h3 className="text-lg font-semibold text-slate-900">Как работает</h3>
+            <ul className="text-sm text-slate-700 space-y-2">
+              <li>1) Загружаем PDF или текст, приоритет — PDF.</li>
+              <li>2) Конвертируем в текст, проверяем длину (до 12k символов).</li>
+              <li>3) Передаём профиль + метаданные программ в OpenAI.</li>
+              <li>4) Возвращаем Summary, Strengths, Weaknesses, Actions, Score, Suggested Programs.</li>
+              <li>5) 3–8 программ, только из базы метаданных.</li>
+            </ul>
+            <div className="text-sm text-indigo-700 bg-indigo-50 border border-indigo-100 rounded-xl p-3">
+              Подсказка: чем конкретнее ваш опыт и интересы, тем точнее рекомендации.
+            </div>
+          </div>
+        </div>
+
+        {loading && (
+          <div className="bg-white/90 border border-slate-100 rounded-2xl shadow-sm p-6 space-y-3 animate-pulse">
+            <div className="h-4 w-32 bg-slate-200 rounded" />
+            <div className="h-3 w-full bg-slate-200 rounded" />
+            <div className="h-3 w-5/6 bg-slate-200 rounded" />
+            <div className="h-3 w-4/6 bg-slate-200 rounded" />
+          </div>
+        )}
+
+        {result && !loading && (
+          <div className="bg-white/90 border border-slate-100 rounded-2xl shadow-sm p-6 space-y-4 transition-all duration-200">
             {result.profile_score !== undefined && (
               <div className="flex items-center gap-2">
                 <span className="text-sm font-semibold text-slate-700">Profile Rating:</span>
