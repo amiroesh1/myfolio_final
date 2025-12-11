@@ -52,7 +52,7 @@ export default function AiAnalyzerPage() {
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-sky-50 via-white to-emerald-50">
-      <div className="max-w-6xl mx-auto px-4 py-10 space-y-6">
+      <div className="max-w-6xl mx-auto px-4 py-10 space-y-6 overflow-hidden">
         <div className="relative overflow-hidden bg-gradient-to-r from-sky-500 via-indigo-500 to-emerald-500 rounded-2xl shadow-xl p-6 text-white">
           <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_20%_20%,white,transparent_30%),radial-gradient(circle_at_80%_0%,white,transparent_25%),radial-gradient(circle_at_40%_60%,white,transparent_20%)]" />
           <div className="relative">
