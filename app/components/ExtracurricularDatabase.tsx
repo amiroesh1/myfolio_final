@@ -319,7 +319,7 @@ export default function ExtracurricularDatabase() {
             {filteredActivities.map((activity, index) => (
             <div
               key={index}
-              className="bg-gradient-to-br from-blue-50 via-white to-emerald-50 border border-blue-100 rounded-xl shadow-md p-4 sm:p-6 hover:shadow-xl transition-all duration-200 hover:-translate-y-1 flex flex-col min-h-[360px] overflow-hidden"
+              className="w-full max-w-full bg-gradient-to-br from-orange-50 via-white to-orange-100 border border-orange-100 rounded-xl shadow-md p-4 sm:p-6 hover:shadow-xl transition-all duration-200 hover:-translate-y-1 flex flex-col min-h-[360px] overflow-hidden"
             >
                 <div className="flex justify-between items-start gap-2 mb-3">
                   <div className="flex-1 min-w-0">

@@ -110,14 +110,14 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
               {/* Mobile sidebar (top buttons) */}
               <div className="flex lg:hidden flex-col gap-2">
-                <div className="grid grid-cols-2 gap-2">
-                  {NAV_ITEMS.slice(0, 4).map((item) => {
+                <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar">
+                  {NAV_ITEMS.map((item) => {
                     const active = pathname?.startsWith(item.href);
                     return (
                       <Link
                         key={item.href}
                         href={item.href}
-                        className={`w-full text-left px-3 py-2 rounded-xl transition-all duration-200 flex items-center gap-2 ${
+                        className={`flex-shrink-0 text-left px-4 py-2 rounded-full transition-all duration-200 flex items-center gap-2 ${
                           active
                             ? 'bg-orange-500 text-white shadow-md'
                             : 'bg-white text-gray-700 shadow-sm'
@@ -129,23 +129,6 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     );
                   })}
                 </div>
-                {NAV_ITEMS.slice(4).map((item) => {
-                  const active = pathname?.startsWith(item.href);
-                  return (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className={`w-full text-left px-3 py-2 rounded-xl transition-all duration-200 flex items-center gap-2 ${
-                        active
-                          ? 'bg-orange-500 text-white shadow-md'
-                          : 'bg-white text-gray-700 shadow-sm'
-                      }`}
-                    >
-                      <span>{item.icon}</span>
-                      <span className="font-semibold text-sm">{item.label}</span>
-                    </Link>
-                  );
-                })}
               </div>
 
               {/* Content */}
